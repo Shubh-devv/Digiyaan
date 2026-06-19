@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Plans – Digiyaan360</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── PRICING SPECIFIC ── */
+.pricing-intro { padding: 40px 5% 0; text-align: center; }
+.pricing-intro p { font-size: 15px; color: var(--muted-text); max-width: 600px; margin: 14px auto 0; line-height: 1.7; }
+
+/* Tab switcher */
+.plan-tabs {
+  display: flex; justify-content: center; gap: 0;
+  margin: 40px auto; width: fit-content;
+  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+}
+.plan-tab {
+  padding: 12px 32px;
+  background: none; border: none;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--muted-text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-right: 1px solid var(--border);
+}
+.plan-tab:last-child { border-right: none; }
+.plan-tab.active {
+  background: var(--primary); color: #fff;
+}
+
+/* Plans grid */
+.plans-section { padding: 20px 5% 80px; }
+.plans-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px; max-width: 1100px; margin: 0 auto;
+}
+.pc {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.pc:hover { transform: translateY(-5px); box-shadow: 0 20px 50px var(--shadow); }
+.pc.popular { border-color: var(--primary); }
+.pc-badge {
+  background: var(--primary); color: #fff;
+  text-align: center; padding: 6px;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  font-weight: 700;
+}
+.pc-head {
+  padding: 32px 28px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.pc-tier {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--muted-text); margin-bottom: 10px;
+}
+.pc-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px; letter-spacing: 2px; line-height: 1;
+  margin-bottom: 8px;
+}
+.pc-tagline { font-size: 12px; color: var(--muted-text); margin-bottom: 20px; }
+.pc-price {
+  display: flex; align-items: baseline; gap: 4px;
+  margin-bottom: 6px;
+}
+.pc-price .curr { font-size: 20px; font-weight: 700; color: var(--primary); }
+.pc-price .amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px; letter-spacing: 1px; line-height: 1;
+}
+.pc-price .period { font-size: 13px; color: var(--muted-text); }
+.pc-saving {
+  display: inline-block; padding: 3px 12px;
+  background: rgba(255,225,39,0.1); color: var(--gold);
+  border-radius: 10px; font-size: 11px; font-weight: 700;
+  margin-top: 6px;
+}
+.pc-body { padding: 28px; }
+.pc-section-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--primary); margin-bottom: 12px; margin-top: 20px;
+}
+.pc-section-label:first-child { margin-top: 0; }
+.pc-features { list-style: none; }
+.pc-features li {
+  font-size: 13px; color: var(--muted-text);
+  padding: 7px 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+}
+.pc-features li .ck { color: var(--primary); font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+.pc-features li .xk { color: #cc3333; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+.pc-features li.highlight { color: var(--text); font-weight: 600; }
+.pc-foot {
+  padding: 24px 28px 28px;
+  border-top: 1px solid var(--border);
+}
+.btn-plan {
+  display: block; width: 100%;
+  padding: 14px; text-align: center;
+  border: 2px solid var(--primary);
+  border-radius: 2px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; letter-spacing: 2px;
+  color: var(--primary);
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer; text-decoration: none;
+}
+.btn-plan:hover, .pc.popular .btn-plan {
+  background: var(--primary); color: #fff;
+}
+.pc.popular .btn-plan:hover {
+  background: var(--primary-light);
+}
+
+/* Individual service pricing */
+.service-pricing { padding: 0 5% 80px; }
+.sp-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 4vw, 48px); letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.sp-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 4px; overflow: hidden;
+  margin-top: 36px;
+}
+.sp-item {
+  background: var(--card-bg);
+  padding: 28px 24px;
+}
+.sp-icon { font-size: 28px; margin-bottom: 12px; }
+.sp-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.sp-desc { font-size: 12px; color: var(--muted-text); line-height: 1.6; margin-bottom: 14px; }
+.sp-price-row { display: flex; align-items: baseline; gap: 6px; }
+.sp-price-label { font-size: 11px; color: var(--muted-text); }
+.sp-price-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 1px; color: var(--primary);
+}
+
+/* FAQ */
+.faq-section { padding: 0 5% 80px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 0; cursor: pointer; font-weight: 600; font-size: 15px;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--primary); }
+.faq-icon { font-size: 18px; transition: transform 0.2s; }
+.faq-a {
+  font-size: 14px; color: var(--muted-text); line-height: 1.7;
+  max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s;
+}
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 16px; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+/* Trust badges */
+.trust-row {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  margin: 36px 5%;
+  padding: 24px 28px;
+  background: var(--card-bg);
+  border: 1px solid var(--border); border-radius: 4px;
+}
+.trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.trust-item .ti { font-size: 22px; }
+
+@media(max-width:900px){
+  .plans-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:600px){
+  .plan-tabs { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">DIGIYAAN<span>360</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle"><span id="themeIcon">☀️</span></button>
+    <a href="contact.html" class="nav-cta">Get Started</a>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-label">Transparent Pricing</div>
+  <h1>PLANS &amp; PRICING</h1>
+  <p>Fixed plans, zero hidden costs. Pick the right fit for your business size — Starter, Growth, or Enterprise.</p>
+</div>
+
+<!-- TRUST ROW -->
+<div class="trust-row">
+  <div class="trust-item"><span class="ti">✅</span> No Hidden Fees</div>
+  <div class="trust-item"><span class="ti">📞</span> Dedicated Account Manager</div>
+  <div class="trust-item"><span class="ti">📊</span> Monthly Performance Report</div>
+  <div class="trust-item"><span class="ti">🤝</span> No Long-Term Lock-In</div>
+  <div class="trust-item"><span class="ti">🇮🇳</span> Kanpur-Based Team</div>
+</div>
+
+<!-- TABS -->
+<div class="pricing-intro">
+  <div class="section-label" style="text-align:center;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Choose Your Plan</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);letter-spacing:2px;">STARTER · GROWTH · ENTERPRISE</h2>
+  <p>Every plan includes dedicated support, a monthly report, and full Digiyaan360 brand expertise.</p>
+</div>
+<div class="plan-tabs">
+  <button class="plan-tab active" onclick="switchTab('digital',this)">Digital Marketing</button>
+  <button class="plan-tab" onclick="switchTab('content',this)">Content Creation</button>
+  <button class="plan-tab" onclick="switchTab('complete',this)">Complete 360°</button>
+</div>
+
+<!-- DIGITAL MARKETING PLANS -->
+<div class="plans-section" id="tab-digital">
+  <div class="plans-grid">
+    <!-- STARTER -->
+    <div class="pc">
+      <div class="pc-head">
+        <div class="pc-tier">Small Business</div>
+        <div class="pc-name">STARTER</div>
+        <div class="pc-tagline">Perfect for local shops, parlours &amp; startups</div>
+        <div class="pc-price">
+          <span class="curr">₹</span>
+          <span class="amount">9,999</span>
+          <span class="period">/ month</span>
+        </div>
+        <div class="pc-saving">Save ₹2,500 vs individual services</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-section-label">Social Media</div>
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>Social media management (1 platform)</span></li>
+          <li><span class="ck">✓</span><span>12 posts per month</span></li>
+          <li><span class="ck">✓</span><span>2 reels / short videos per month</span></li>
+          <li><span class="ck">✓</span><span>Caption writing &amp; hashtag strategy</span></li>
+          <li><span class="xk">✗</span><span style="opacity:.5">Photography shoot</span></li>
+        </ul>
+        <div class="pc-section-label">SEO &amp; Web</div>
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>Google My Business setup &amp; optimisation</span></li>
+          <li><span class="xk">✗</span><span style="opacity:.5">Keyword SEO campaign</span></li>
+          <li><span class="xk">✗</span><span style="opacity:.5">Website support</span></li>
+        </ul>
+        <div class="pc-section-label">Reporting</div>
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>Monthly performance report</span></li>
+          <li><span class="ck">✓</span><span>WhatsApp support</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot">
+        <a href="contact.html" class="btn-plan">Get Started</a>
+      </div>
+    </div>
+
+    <!-- GROWTH -->
+    <div class="pc popular">
+      <div class="pc-badge">⭐ MOST POPULAR</div>
+      <div class="pc-head">
+        <div class="pc-tier">Growing Business</div>
+        <div class="pc-name">GROWTH</div>
+        <div class="pc-tagline">For businesses ready to scale fast</div>
+        <div class="pc-price">
+          <span class="curr">₹</span>
+          <span class="amount">19,999</span>
+          <span class="period">/ month</span>
+        </div>
+        <div class="pc-saving">Save ₹7,000 vs individual services</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-section-label">Social Media</div>
+        <ul class="pc-features">
+          <li class="highlight"><span class="ck">✓</span><span>Social media management (2 platforms)</span></li>
+          <li><span class="ck">✓</span><span>20 posts per month</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>4 reels + 1 brand video (3–5 min edit)</span></li>
+          <li><span class="ck">✓</span><span>Caption, hashtag &amp; story strategy</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>1 professional photo shoot per month</span></li>
+        </ul>
+        <div class="pc-section-label">SEO &amp; Web</div>
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>Google My Business management</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>SEO – 2 keywords</span></li>
+          <li><span class="ck">✓</span><span>Basic website maintenance</span></li>
+        </ul>
+        <div class="pc-section-label">Reporting</div>
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>Bi-weekly performance report</span></li>
+          <li><span class="ck">✓</span><span>Dedicated account manager</span></li>
+          <li><span class="ck">✓</span><span>Priority WhatsApp &amp; call support</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot">
+        <a href="contact.html" class="btn-plan">Get Started</a>
+      </div>
+    </div>
+
+    <!-- ENTERPRISE -->
+    <div class="pc">
+      <div class="pc-head">
+        <div class="pc-tier">Established Brand</div>
+        <div class="pc-name">ENTERPRISE</div>
+        <div class="pc-tagline">Full 360° marketing for serious brands</div>
+        <div class="pc-price">
+          <span class="curr">₹</span>
+          <span class="amount">39,999</span>
+          <span class="period">/ month</span>
+        </div>
+        <div class="pc-saving">Save ₹18,000+ vs individual services</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-section-label">Social Media</div>
+        <ul class="pc-features">
+          <li class="highlight"><span class="ck">✓</span><span>Social media management (3 platforms)</span></li>
+          <li><span class="ck">✓</span><span>Unlimited posts per month</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>8 reels + 2 brand videos per month</span></li>
+          <li><span class="ck">✓</span><span>Story, reel &amp; ad creative strategy</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>2 professional photo shoots per month</span></li>
+        </ul>
+        <div class="pc-section-label">SEO &amp; Web</div>
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>Google My Business management</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>SEO – 3 keywords (aggressive)</span></li>
+          <li><span class="ck">✓</span><span>Full website maintenance &amp; updates</span></li>
+        </ul>
+        <div class="pc-section-label">Reporting &amp; Strategy</div>
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>Weekly performance report</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>Monthly strategy call with agency head</span></li>
+          <li><span class="ck">✓</span><span>24/7 priority support</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>Quarterly competitor analysis</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot">
+        <a href="contact.html" class="btn-plan">Get Started</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT CREATION PLANS -->
+<div class="plans-section" id="tab-content" style="display:none;">
+  <div class="plans-grid">
+    <div class="pc">
+      <div class="pc-head">
+        <div class="pc-tier">Small Business</div>
+        <div class="pc-name">CONTENT BASIC</div>
+        <div class="pc-tagline">Occasional shoots &amp; reels</div>
+        <div class="pc-price">
+          <span class="curr">₹</span><span class="amount">7,499</span><span class="period">/ month</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>1 photo shoot per month (₹3,850 value)</span></li>
+          <li><span class="ck">✓</span><span>2 reels edited (under 1 min each)</span></li>
+          <li><span class="ck">✓</span><span>5 static post designs</span></li>
+          <li><span class="ck">✓</span><span>Raw files included</span></li>
+          <li><span class="xk">✗</span><span style="opacity:.5">Long-form video edit</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
+    </div>
+    <div class="pc popular">
+      <div class="pc-badge">⭐ MOST POPULAR</div>
+      <div class="pc-head">
+        <div class="pc-tier">Growing Business</div>
+        <div class="pc-name">CONTENT PRO</div>
+        <div class="pc-tagline">Regular content machine</div>
+        <div class="pc-price">
+          <span class="curr">₹</span><span class="amount">14,999</span><span class="period">/ month</span>
+        </div>
+        <div class="pc-saving">Save ₹4,500 vs individual</div>
+      </div>
+      <div class="pc-body">
+        <ul class="pc-features">
+          <li class="highlight"><span class="ck">✓</span><span>2 photo shoots per month</span></li>
+          <li><span class="ck">✓</span><span>4 reels edited (under 1 min)</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>1 brand video edit (3–5 min)</span></li>
+          <li><span class="ck">✓</span><span>10 static post designs</span></li>
+          <li><span class="ck">✓</span><span>Thumbnail design for YouTube</span></li>
+          <li><span class="ck">✓</span><span>Raw + edited files</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
+    </div>
+    <div class="pc">
+      <div class="pc-head">
+        <div class="pc-tier">Established Brand</div>
+        <div class="pc-name">CONTENT STUDIO</div>
+        <div class="pc-tagline">Agency-grade content every week</div>
+        <div class="pc-price">
+          <span class="curr">₹</span><span class="amount">27,999</span><span class="period">/ month</span>
+        </div>
+        <div class="pc-saving">Save ₹10,000+ vs individual</div>
+      </div>
+      <div class="pc-body">
+        <ul class="pc-features">
+          <li class="highlight"><span class="ck">✓</span><span>4 photo shoots per month</span></li>
+          <li><span class="ck">✓</span><span>8 reels edited (under 1 min)</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>2 brand videos (3–5 min each)</span></li>
+          <li><span class="ck">✓</span><span>Unlimited static designs</span></li>
+          <li><span class="ck">✓</span><span>YouTube thumbnail batch</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>Dedicated content strategist</span></li>
+          <li><span class="ck">✓</span><span>Content calendar planning</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLETE 360 PLANS -->
+<div class="plans-section" id="tab-complete" style="display:none;">
+  <div class="plans-grid">
+    <div class="pc">
+      <div class="pc-head">
+        <div class="pc-tier">Small Business · 360°</div>
+        <div class="pc-name">360° BASIC</div>
+        <div class="pc-tagline">End-to-end for small teams</div>
+        <div class="pc-price">
+          <span class="curr">₹</span><span class="amount">17,499</span><span class="period">/ month</span>
+        </div>
+        <div class="pc-saving">Save ₹5,000 vs individual</div>
+      </div>
+      <div class="pc-body">
+        <ul class="pc-features">
+          <li><span class="ck">✓</span><span>Social media management (1 platform)</span></li>
+          <li><span class="ck">✓</span><span>1 photo shoot / month</span></li>
+          <li><span class="ck">✓</span><span>2 reels / month</span></li>
+          <li><span class="ck">✓</span><span>Google My Business</span></li>
+          <li><span class="ck">✓</span><span>SEO – 1 keyword</span></li>
+          <li><span class="ck">✓</span><span>Basic outdoor design (1 creative)</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
+    </div>
+    <div class="pc popular">
+      <div class="pc-badge">⭐ MOST POPULAR</div>
+      <div class="pc-head">
+        <div class="pc-tier">Medium Business · 360°</div>
+        <div class="pc-name">360° GROWTH</div>
+        <div class="pc-tagline">The complete growth engine</div>
+        <div class="pc-price">
+          <span class="curr">₹</span><span class="amount">34,999</span><span class="period">/ month</span>
+        </div>
+        <div class="pc-saving">Save ₹15,000+ vs individual</div>
+      </div>
+      <div class="pc-body">
+        <ul class="pc-features">
+          <li class="highlight"><span class="ck">✓</span><span>Social media (2 platforms)</span></li>
+          <li><span class="ck">✓</span><span>2 photo shoots / month</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>4 reels + 1 brand video</span></li>
+          <li><span class="ck">✓</span><span>Google My Business + local SEO</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>SEO – 2 keywords</span></li>
+          <li><span class="ck">✓</span><span>1 outdoor creative design</span></li>
+          <li><span class="ck">✓</span><span>Website maintenance</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>Bi-weekly strategy reports</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
+    </div>
+    <div class="pc">
+      <div class="pc-head">
+        <div class="pc-tier">Large Business · 360°</div>
+        <div class="pc-name">360° ENTERPRISE</div>
+        <div class="pc-tagline">Full domination — digital + ground</div>
+        <div class="pc-price">
+          <span class="curr">₹</span><span class="amount">59,999</span><span class="period">/ month</span>
+        </div>
+        <div class="pc-saving">Save ₹30,000+ vs individual</div>
+      </div>
+      <div class="pc-body">
+        <ul class="pc-features">
+          <li class="highlight"><span class="ck">✓</span><span>Social media (3+ platforms)</span></li>
+          <li><span class="ck">✓</span><span>4 photo shoots / month</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>8 reels + 2 brand videos</span></li>
+          <li><span class="ck">✓</span><span>Full SEO — 3 keywords (aggressive)</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>Outdoor ad design &amp; execution support</span></li>
+          <li><span class="ck">✓</span><span>Paid ads management (Meta/Google)</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>Website design &amp; maintenance</span></li>
+          <li><span class="ck">✓</span><span>Weekly reports + monthly strategy call</span></li>
+          <li class="highlight"><span class="ck">✓</span><span>Dedicated team of 3 specialists</span></li>
+        </ul>
+      </div>
+      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- INDIVIDUAL SERVICE RATES -->
+<div class="service-pricing">
+  <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Pay Per Service</div>
+  <h2 class="sp-title">Individual Service Rates</h2>
+  <p style="font-size:14px;color:var(--muted-text);max-width:520px;line-height:1.7;">Don't need a full plan? Order individual services. These rates are built into all plans — so plans always give you better value.</p>
+  <div class="sp-grid">
+    <div class="sp-item">
+      <div class="sp-icon">📸</div>
+      <div class="sp-name">Photo Shoot</div>
+      <div class="sp-desc">Professional brand or product photography session (half day).</div>
+      <div class="sp-price-row">
+        <span class="sp-price-label">Per shoot</span>
+        <span class="sp-price-val">₹3,850</span>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">🎬</div>
+      <div class="sp-name">Reel Edit (under 1 min)</div>
+      <div class="sp-desc">Short-form video editing — transitions, music, text overlays.</div>
+      <div class="sp-price-row">
+        <span class="sp-price-label">Per reel</span>
+        <span class="sp-price-val">₹549</span>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">🎥</div>
+      <div class="sp-name">Brand Video Edit (3–5 min)</div>
+      <div class="sp-desc">Long-form brand storytelling video with full colour grade &amp; music.</div>
+      <div class="sp-price-row">
+        <span class="sp-price-label">Per video</span>
+        <span class="sp-price-val">₹1,099</span>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">📱</div>
+      <div class="sp-name">Social Media Management</div>
+      <div class="sp-desc">Full management of one social media account for one month.</div>
+      <div class="sp-price-row">
+        <span class="sp-price-label">Per month</span>
+        <span class="sp-price-val">₹3,850</span>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">🔍</div>
+      <div class="sp-name">SEO (Per Keyword)</div>
+      <div class="sp-desc">Rank one keyword on Google — on-page + off-page optimisation.</div>
+      <div class="sp-price-row">
+        <span class="sp-price-label">Per keyword/mo</span>
+        <span class="sp-price-val">₹5,399</span>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">🪧</div>
+      <div class="sp-name">Outdoor / Signage Design</div>
+      <div class="sp-desc">Hoarding, signboard, LED or vehicle branding design + execution.</div>
+      <div class="sp-price-row">
+        <span class="sp-price-label">Starting from</span>
+        <span class="sp-price-val">Custom</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Common Questions</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;margin-bottom:30px;">FREQUENTLY ASKED</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Is there a lock-in contract? <span class="faq-icon">+</span></div>
+    <div class="faq-a">No long-term lock-in. All our plans are month-to-month. We prefer to earn your business every month through results, not contracts.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How soon will I see results from SEO? <span class="faq-icon">+</span></div>
+    <div class="faq-a">SEO typically shows measurable improvement within 4–8 weeks for local keywords. You'll see clear ranking changes in your monthly report.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Do you provide content ideas or do I need to? <span class="faq-icon">+</span></div>
+    <div class="faq-a">We handle everything — content strategy, ideas, scripts, shoot coordination, editing, and posting. You just approve the content calendar each month.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Can I upgrade my plan later? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Absolutely. You can upgrade at any time. The difference in cost is prorated for the remaining days of the month. Many clients start on Starter and grow to Enterprise within 3–6 months.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Are outdoor advertising (hoardings / signboards) included? <span class="faq-icon">+</span></div>
+    <div class="faq-a">Design creatives for outdoor are included in higher plans. The physical execution cost (printing, LED panels, installation) varies by size and location — we'll give you a separate quote for that.</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>NOT SURE WHICH PLAN?</h2>
+  <p>Talk to us — we'll recommend the right fit for your business and budget, no pressure.</p>
+  <a href="contact.html" class="btn-white">Book a Free Consultation</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">DIGIYAAN<span>360</span></div>
+      <p class="footer-desc">360° Marketing Agency — Digital, Print &amp; On-Ground.</p>
+      <p style="font-size:13px;color:var(--muted-text);margin-top:8px;">📞 +91-7084861080</p>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Pages</div>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portfolio.html">Portfolio</a>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Company</div>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://wa.me/917084861080" target="_blank">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Digiyaan360. All rights reserved.</span>
+    <span>Optimize · Advertise · Amplify</span>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function switchTab(id, btn) {
+  ['digital','content','complete'].forEach(function(t){
+    document.getElementById('tab-'+t).style.display = t===id ? 'block' : 'none';
+  });
+  document.querySelectorAll('.plan-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+function toggleFaq(q) {
+  var item = q.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>

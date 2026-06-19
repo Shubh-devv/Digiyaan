@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio – Digiyaan360</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.portfolio-section { padding: 60px 5% 80px; }
+.filter-bar {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.ftab {
+  padding: 8px 22px; border-radius: 20px;
+  border: 1px solid var(--border);
+  background: none; font-family: 'Manrope', sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+  color: var(--muted-text); cursor: pointer;
+  transition: all 0.2s;
+}
+.ftab.active, .ftab:hover {
+  border-color: var(--primary); color: var(--primary);
+  background: rgba(36,82,160,0.08);
+}
+.port-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.port-card {
+  border-radius: 4px; overflow: hidden;
+  aspect-ratio: 4/3; position: relative;
+  cursor: pointer; background: var(--card-bg);
+  border: 1px solid var(--border);
+}
+.port-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
+.port-card:hover img { transform: scale(1.06); }
+.port-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 55%);
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; align-items: flex-end; padding: 18px;
+}
+.port-card:hover .port-overlay { opacity: 1; }
+.port-label { font-size: 10px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+.port-client { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; }
+
+/* Websites section */
+.web-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 40px; }
+.wc {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 4px; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.wc:hover { transform: translateY(-4px); box-shadow: 0 20px 40px var(--shadow); }
+.wc-thumb { height: 150px; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+.wc-body { padding: 18px; }
+.wc-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 6px; }
+.wc-desc { font-size: 12px; color: var(--muted-text); line-height: 1.6; margin-bottom: 12px; }
+.wc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.wc-link { color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+
+/* IG section */
+.ig-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 40px; }
+.ig-c {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 24px 16px;
+  text-align: center; text-decoration: none; color: inherit;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.ig-c:hover { transform: translateY(-3px); border-color: rgba(193,53,132,0.5); }
+.ig-avatar {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin: 0 auto 14px;
+}
+
+/* Lightbox */
+#lightbox {
+  display: none; position: fixed; inset: 0; z-index: 8000;
+  background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+}
+#lightbox.show { display: flex; }
+#lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 4px; }
+#lightbox-close {
+  position: absolute; top: 20px; right: 28px;
+  font-size: 30px; color: #fff; cursor: pointer; z-index: 8001;
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">DIGIYAAN<span>360</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle"><span id="themeIcon">☀️</span></button>
+    <a href="contact.html" class="nav-cta">Get Started</a>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-label">Our Work</div>
+  <h1>PORTFOLIO</h1>
+  <p>Signboards, hoardings, vehicle branding, websites, and social media accounts we manage — all for real businesses in Kanpur.</p>
+</div>
+
+<div class="portfolio-section">
+  <!-- OUTDOOR WORK -->
+  <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Outdoor &amp; Branding</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;margin-bottom:30px;">SIGNBOARDS, HOARDINGS &amp; OOH</h2>
+  <div class="filter-bar">
+    <button class="ftab active" onclick="filterPort('all',this)">All</button>
+    <button class="ftab" onclick="filterPort('signboard',this)">Shop Signboards</button>
+    <button class="ftab" onclick="filterPort('hoarding',this)">Hoardings</button>
+    <button class="ftab" onclick="filterPort('vehicle',this)">Vehicle Branding</button>
+    <button class="ftab" onclick="filterPort('led',this)">Mall LED</button>
+    <button class="ftab" onclick="filterPort('interior',this)">Interior</button>
+  </div>
+  <div class="port-grid" id="portfolio-grid"></div>
+
+  <!-- WEBSITES -->
+  <div style="margin-top:70px;">
+    <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Web Design</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;">WEBSITES WE'VE BUILT</h2>
+    <div class="web-grid" id="web-grid"></div>
+  </div>
+
+  <!-- INSTAGRAM MANAGED -->
+  <div style="margin-top:70px;">
+    <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Social Media</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;">ACCOUNTS WE MANAGE</h2>
+    <p style="font-size:14px;color:var(--muted-text);margin-bottom:0;line-height:1.7;">Active Instagram accounts currently under Digiyaan360 management. Click to view each account.</p>
+    <div class="ig-grid" id="ig-grid"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<div class="cta-band">
+  <h2>WANT WORK LIKE THIS?</h2>
+  <p>Let's talk about your project — shoot, signboard, social or SEO.</p>
+  <a href="contact.html" class="btn-white">Get a Free Quote</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">DIGIYAAN<span>360</span></div>
+      <p class="footer-desc">360° Marketing Agency — Digital, Print &amp; On-Ground.</p>
+      <p style="font-size:13px;color:var(--muted-text);margin-top:8px;">📞 +91-7084861080</p>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Pages</div>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portfolio.html">Portfolio</a>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Company</div>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://wa.me/917084861080" target="_blank">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Digiyaan360. All rights reserved.</span>
+    <span>Optimize · Advertise · Amplify</span>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// Note: Images reference the original site's image paths.
+// Replace IMGS["..."] with actual image URLs or relative paths after deployment.
+const PORTFOLIO_ITEMS = [
+  {src:'#',client:"Ritu's L'Oréal Salon",type:'signboard',typeLabel:'Shop Signboard'},
+  {src:'#',client:"Ritu's L'Oréal – Full Building",type:'signboard',typeLabel:'LED Sign – Night View'},
+  {src:'#',client:'Ritu Makeup Studio',type:'signboard',typeLabel:'Shop Signboard'},
+  {src:'#',client:'Ritu Makeup Studio',type:'signboard',typeLabel:'Night Glow Sign'},
+  {src:'#',client:'Vandana Makeover & Academy',type:'signboard',typeLabel:'3D LED Sign Box'},
+  {src:'#',client:'Jasmine Salon',type:'signboard',typeLabel:'Standee Banner'},
+  {src:'#',client:"Ritu's L'Oréal",type:'signboard',typeLabel:'Premium Diamond LED Sign'},
+  {src:'#',client:'Ritu Makeup Studio',type:'signboard',typeLabel:'Sign Installation Process'},
+  {src:'#',client:"Ritu's L'Oréal",type:'vehicle',typeLabel:'E-Rickshaw Branding'},
+  {src:'#',client:"Ritu's L'Oréal – Service Panel",type:'vehicle',typeLabel:'E-Rickshaw Branding'},
+  {src:'#',client:'South X Mall Billboard',type:'hoarding',typeLabel:'Building Wrap Billboard'},
+  {src:'#',client:'Mall LED Screen',type:'hoarding',typeLabel:'Building LED Screen'},
+  {src:'#',client:'Aksh Grand Banquet',type:'hoarding',typeLabel:'Street Hoarding'},
+  {src:'#',client:'Dainik Jagran',type:'hoarding',typeLabel:'Backlit Hoarding Night'},
+  {src:'#',client:'RS Institute – NEET & JEE',type:'led',typeLabel:'Mall Indoor LED Ad'},
+  {src:'#',client:'Pakhi Eye Care',type:'led',typeLabel:'Mall Indoor LED Ad'},
+  {src:'#',client:"Ritu's L'Oréal – Interior",type:'interior',typeLabel:'Backlit Photo Panel'},
+  {src:'#',client:'Nisha Lal Makeover Studio',type:'interior',typeLabel:'Studio Wall Branding'},
+];
+const WEB_PROJECTS = [
+  {icon:'🎓',name:'Signa College',desc:'College website with admissions portal, course listings and faculty profiles.',tags:['Education','Admissions'],url:'https://shubhamdubeyproject.netlify.app/',color:'#1a237e'},
+  {icon:'🌶️',name:'BMB Spices',desc:'E-commerce spice brand website with product catalog and ordering.',tags:['E-Commerce','FMCG'],url:'https://bmbspices.in',color:'#bf360c'},
+  {icon:'🎉',name:'Occasion.in',desc:'Event & celebration platform — occasion planning and vendor listing.',tags:['Events','Marketplace'],url:'https://occasion.in',color:'#4a148c'},
+  {icon:'🖥️',name:'Time Square Media',desc:'Outdoor advertising company website with ad slot booking.',tags:['OOH','Media'],url:'https://timesquaremedia.in',color:'#006064'},
+  {icon:'📊',name:'Options Marketing',desc:'Performance marketing agency website with case studies and results.',tags:['Marketing'],url:'https://options.marketing',color:'#1b5e20'},
+];
+const IG_CLIENTS = [
+  {handle:'@ritu.makeupstudio',url:'https://www.instagram.com/ritu.makeupstudio/',icon:'💄',niche:"Ritu's L'Oréal – Bridal Makeup"},
+  {handle:'@n3_salon_nail_art',url:'https://www.instagram.com/n3_salon_nail_art/',icon:'💅',niche:'N3 Salon – Nail Art'},
+  {handle:'@thebellavidaunisexsalon',url:'https://www.instagram.com/thebellavidaunisexsalon/',icon:'✂️',niche:'Bellavida Unisex Salon'},
+  {handle:'@trendadvertising',url:'https://www.instagram.com/trendadvertising/',icon:'📢',niche:'Trend Advertising Agency'},
+  {handle:'@vardanhomoeopathicstore',url:'https://www.instagram.com/vardanhomoeopathicstore/',icon:'🌿',niche:'Vardan Homoeopathic Store'},
+];
+
+function filterPort(f, btn) {
+  document.querySelectorAll('.ftab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var grid = document.getElementById('portfolio-grid');
+  grid.innerHTML = '';
+  var items = f === 'all' ? PORTFOLIO_ITEMS : PORTFOLIO_ITEMS.filter(function(p){ return p.type === f; });
+  items.forEach(function(p){
+    var emojiMap = {signboard:'🪧',hoarding:'🏙️',vehicle:'🚗',led:'💡',interior:'🖼️'};
+    var c = document.createElement('div');
+    c.className = 'port-card';
+    if (p.src !== '#') {
+      c.innerHTML = '<img src="'+p.src+'" alt="'+p.client+'" loading="lazy"><div class="port-overlay"><div><div class="port-label">'+p.typeLabel+'</div><div class="port-client">'+p.client+'</div></div></div>';
+      c.querySelector('img').onclick = function(){ openLightbox(p.src); };
+    } else {
+      c.innerHTML = '<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--card-bg)"><div style="font-size:36px;">'+emojiMap[p.type]+'</div><div style="font-size:11px;color:var(--primary);letter-spacing:2px;text-transform:uppercase;">'+p.typeLabel+'</div><div style="font-family:Bebas Neue,sans-serif;font-size:16px;text-align:center;padding:0 16px;">'+p.client+'</div></div>';
+    }
+    grid.appendChild(c);
+  });
+}
+filterPort('all', document.querySelector('.ftab'));
+
+document.getElementById('web-grid').innerHTML = WEB_PROJECTS.map(function(w){
+  return '<div class="wc"><div class="wc-thumb" style="background:linear-gradient(135deg,'+w.color+'33,'+w.color+'55)">'+w.icon+'</div><div class="wc-body"><div class="wc-name">'+w.name+'</div><div class="wc-desc">'+w.desc+'</div><div class="wc-tags">'+w.tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('')+'</div><a class="wc-link" href="'+w.url+'" target="_blank">VISIT WEBSITE →</a></div></div>';
+}).join('');
+
+document.getElementById('ig-grid').innerHTML = IG_CLIENTS.map(function(ig){
+  return '<a class="ig-c" href="'+ig.url+'" target="_blank"><div class="ig-avatar">'+ig.icon+'</div><div style="font-weight:700;font-size:13px;margin-bottom:4px;">'+ig.handle+'</div><div style="font-size:11px;color:var(--muted-text);">'+ig.niche+'</div><div style="margin-top:10px;font-size:10px;padding:3px 10px;border-radius:10px;background:rgba(193,53,132,0.1);color:#e1306c;letter-spacing:1px;">📱 Managed</div></a>';
+}).join('');
+
+function openLightbox(src){ document.getElementById('lightbox-img').src=src; document.getElementById('lightbox').classList.add('show'); }
+function closeLightbox(){ document.getElementById('lightbox').classList.remove('show'); }
+</script>
+</body>
+</html>

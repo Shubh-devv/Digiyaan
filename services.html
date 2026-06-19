@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services – Digiyaan360</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.services-full { padding: 60px 5% 80px; }
+.srv-category { margin-bottom: 70px; }
+.cat-label {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--primary); margin-bottom: 14px;
+}
+.cat-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 4vw, 52px); letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.cat-desc { font-size: 14px; color: var(--muted-text); max-width: 560px; line-height: 1.7; margin-bottom: 36px; }
+.service-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.sl-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 4px; padding: 28px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.sl-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.sl-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.sl-icon { font-size: 30px; }
+.sl-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
+.sl-price-tag { font-size: 11px; color: var(--gold); letter-spacing: 1px; margin-top: 2px; }
+.sl-desc { font-size: 13px; color: var(--muted-text); line-height: 1.7; margin-bottom: 16px; }
+.sl-bullets { list-style: none; }
+.sl-bullets li {
+  font-size: 12px; color: var(--muted-text);
+  padding: 5px 0; display: flex; gap: 8px; align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+}
+.sl-bullets li::before { content: '→'; color: var(--primary); flex-shrink: 0; }
+.section-divider { height: 1px; background: var(--border); margin: 0 0 70px; }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">DIGIYAAN<span>360</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle"><span id="themeIcon">☀️</span></button>
+    <a href="contact.html" class="nav-cta">Get Started</a>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-label">What We Do</div>
+  <h1>OUR SERVICES</h1>
+  <p>Everything your business needs to grow — digital and on-ground. One agency, one invoice, 360° results.</p>
+</div>
+
+<div class="services-full">
+
+  <!-- DIGITAL -->
+  <div class="srv-category" id="social">
+    <div class="cat-label">Digital Marketing</div>
+    <h2 class="cat-title">Social Media &amp; Online Presence</h2>
+    <p class="cat-desc">We manage your brand's voice online — daily posts, reels, engagement and growth across all major platforms.</p>
+    <div class="service-list">
+      <div class="sl-card">
+        <div class="sl-head">
+          <div class="sl-icon">📱</div>
+          <div><div class="sl-name">Social Media Management</div><div class="sl-price-tag">from ₹3,850 / month</div></div>
+        </div>
+        <div class="sl-desc">End-to-end management of your Instagram, Facebook, and other social accounts. We create, schedule, and engage for you.</div>
+        <ul class="sl-bullets">
+          <li>Custom content calendar each month</li>
+          <li>Caption writing, hashtag research</li>
+          <li>Story &amp; reel strategy</li>
+          <li>Comment &amp; DM management</li>
+          <li>Monthly analytics report</li>
+        </ul>
+      </div>
+      <div class="sl-card" id="seo">
+        <div class="sl-head">
+          <div class="sl-icon">🔍</div>
+          <div><div class="sl-name">SEO (Search Engine Optimisation)</div><div class="sl-price-tag">from ₹5,399 / keyword / month</div></div>
+        </div>
+        <div class="sl-desc">Rank your business on Google for the keywords your customers are searching. We handle everything from on-page to link building.</div>
+        <ul class="sl-bullets">
+          <li>Keyword research &amp; strategy</li>
+          <li>On-page optimisation</li>
+          <li>Google My Business management</li>
+          <li>Local citation building</li>
+          <li>Monthly ranking report</li>
+        </ul>
+      </div>
+      <div class="sl-card">
+        <div class="sl-head">
+          <div class="sl-icon">💻</div>
+          <div><div class="sl-name">Website Design &amp; Development</div><div class="sl-price-tag">Custom Quote</div></div>
+        </div>
+        <div class="sl-desc">Fast, conversion-focused websites built for lead generation. See our portfolio — we've built for colleges, FMCG brands, event companies and agencies.</div>
+        <ul class="sl-bullets">
+          <li>Mobile-first responsive design</li>
+          <li>Lead capture &amp; contact forms</li>
+          <li>WhatsApp CTA integration</li>
+          <li>SEO-ready structure</li>
+          <li>Hosting &amp; domain support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- CONTENT -->
+  <div class="srv-category" id="photography">
+    <div class="cat-label">Content Production</div>
+    <h2 class="cat-title">Photography &amp; Video</h2>
+    <p class="cat-desc">Scroll-stopping visuals shot and edited right here in Kanpur. We understand local aesthetics and what your audience responds to.</p>
+    <div class="service-list">
+      <div class="sl-card">
+        <div class="sl-head">
+          <div class="sl-icon">📸</div>
+          <div><div class="sl-name">Brand Photography</div><div class="sl-price-tag">₹3,850 / shoot</div></div>
+        </div>
+        <div class="sl-desc">Professional product, interiors, or event photography. Every image is edited and delivered in high-res for social, print, and web.</div>
+        <ul class="sl-bullets">
+          <li>Half-day shoot (3–4 hours)</li>
+          <li>30+ edited images delivered</li>
+          <li>Raw files included</li>
+          <li>Background &amp; prop coordination</li>
+        </ul>
+      </div>
+      <div class="sl-card" id="video">
+        <div class="sl-head">
+          <div class="sl-icon">🎬</div>
+          <div><div class="sl-name">Reel &amp; Short Video Editing</div><div class="sl-price-tag">₹549 per reel (under 1 min)</div></div>
+        </div>
+        <div class="sl-desc">Punchy, algorithm-friendly reels that stop the scroll. Colour graded, captioned, and ready to post with music.</div>
+        <ul class="sl-bullets">
+          <li>Transitions &amp; motion graphics</li>
+          <li>Subtitle / caption overlay</li>
+          <li>Trending audio sync</li>
+          <li>Delivery in 48 hours</li>
+        </ul>
+      </div>
+      <div class="sl-card">
+        <div class="sl-head">
+          <div class="sl-icon">🎥</div>
+          <div><div class="sl-name">Brand Video Edit (3–5 min)</div><div class="sl-price-tag">₹1,099 per video</div></div>
+        </div>
+        <div class="sl-desc">Full-length brand storytelling videos. Product launches, testimonials, event highlights — edited with a cinematic look.</div>
+        <ul class="sl-bullets">
+          <li>Colour grade &amp; sound design</li>
+          <li>Motion title cards</li>
+          <li>Intro &amp; outro branding</li>
+          <li>YouTube &amp; social optimised</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- OUTDOOR -->
+  <div class="srv-category" id="outdoor">
+    <div class="cat-label">Outdoor &amp; On-Ground</div>
+    <h2 class="cat-title">Hoardings, Signboards &amp; OOH</h2>
+    <p class="cat-desc">When your city needs to notice you — we design, produce and place outdoor advertising that makes an impression. Check our portfolio for real examples.</p>
+    <div class="service-list">
+      <div class="sl-card">
+        <div class="sl-head">
+          <div class="sl-icon">🪧</div>
+          <div><div class="sl-name">Shop Signboards &amp; LED Signs</div><div class="sl-price-tag">Custom Quote</div></div>
+        </div>
+        <div class="sl-desc">3D LED sign boxes, backlit panels, flex boards and premium diamond LED signs for shops, salons, clinics and offices.</div>
+        <ul class="sl-bullets">
+          <li>Design + production + installation</li>
+          <li>Night-glow &amp; backlit options</li>
+          <li>Interior photo panels</li>
+        </ul>
+      </div>
+      <div class="sl-card">
+        <div class="sl-head">
+          <div class="sl-icon">🏙️</div>
+          <div><div class="sl-name">Hoardings &amp; Billboards</div><div class="sl-price-tag">Custom Quote</div></div>
+        </div>
+        <div class="sl-desc">Building wraps, street hoardings, backlit flex and digital LED screen ads. We have active placements at South X Mall and key Kanpur locations.</div>
+        <ul class="sl-bullets">
+          <li>Site selection &amp; negotiation</li>
+          <li>Print production &amp; installation</li>
+          <li>Digital LED screen booking</li>
+        </ul>
+      </div>
+      <div class="sl-card">
+        <div class="sl-head">
+          <div class="sl-icon">🚗</div>
+          <div><div class="sl-name">Vehicle Branding</div><div class="sl-price-tag">Custom Quote</div></div>
+        </div>
+        <div class="sl-desc">E-rickshaw, auto, car and delivery fleet branding that turns every trip into a mobile advertisement for your business.</div>
+        <ul class="sl-bullets">
+          <li>Full vehicle wrap design</li>
+          <li>Side panel branding</li>
+          <li>Fleet branding packages</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta-band">
+  <h2>READY TO GET STARTED?</h2>
+  <p>Choose a plan or talk to us about a custom package for your business.</p>
+  <a href="pricing.html" class="btn-white" style="margin-right:14px;">See Pricing</a>
+  <a href="contact.html" class="btn-white" style="background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5);">Contact Us</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">DIGIYAAN<span>360</span></div>
+      <p class="footer-desc">360° Marketing Agency — Digital, Print &amp; On-Ground.</p>
+      <p style="font-size:13px;color:var(--muted-text);margin-top:8px;">📞 +91-7084861080</p>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Pages</div>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portfolio.html">Portfolio</a>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Company</div>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://wa.me/917084861080" target="_blank">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Digiyaan360. All rights reserved.</span>
+    <span>Optimize · Advertise · Amplify</span>
+  </div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>

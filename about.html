@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About – Digiyaan360</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.about-section { padding: 60px 5% 80px; }
+.about-story {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: center; margin-bottom: 80px;
+}
+.about-story-text .big-quote {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 4vw, 52px); letter-spacing: 2px;
+  line-height: 1.1; margin-bottom: 24px;
+}
+.about-story-text .big-quote span { color: var(--primary); }
+.about-story-text p { font-size: 14px; color: var(--muted-text); line-height: 1.8; margin-bottom: 16px; }
+.about-visual {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 6px; padding: 40px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.av-stat { display: flex; align-items: center; gap: 16px; }
+.av-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 1px; color: var(--primary); min-width: 100px; }
+.av-stat-desc { font-size: 13px; color: var(--muted-text); line-height: 1.6; }
+
+/* Values */
+.values-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 20px; margin-top: 40px; }
+.val-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 28px; }
+.val-icon { font-size: 30px; margin-bottom: 14px; }
+.val-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 8px; }
+.val-desc { font-size: 13px; color: var(--muted-text); line-height: 1.7; }
+
+/* Team */
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 20px; margin-top: 40px; }
+.team-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 28px; text-align: center; }
+.team-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg,var(--primary),var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; }
+.team-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.team-role { font-size: 12px; color: var(--muted-text); letter-spacing: 1px; text-transform: uppercase; }
+
+@media(max-width:768px){
+  .about-story { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">DIGIYAAN<span>360</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle"><span id="themeIcon">☀️</span></button>
+    <a href="contact.html" class="nav-cta">Get Started</a>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-label">Who We Are</div>
+  <h1>ABOUT DIGIYAAN360</h1>
+  <p>A Kanpur-born agency that believes every local business deserves world-class marketing. No big-agency jargon, no empty promises — just results.</p>
+</div>
+
+<div class="about-section">
+  <!-- STORY -->
+  <div class="about-story">
+    <div class="about-story-text">
+      <div class="big-quote">BUILT IN <span>KANPUR</span>,<br>BUILT FOR<br>KANPUR.</div>
+      <p>Digiyaan360 was founded with one mission: to give local businesses — salons, clinics, institutes, spice brands, banquet halls — the same quality of marketing that big brands in Delhi and Mumbai take for granted.</p>
+      <p>We saw too many Kanpur businesses being underserved: generic social media posts, no SEO, signboards that didn't reflect the quality inside. We built Digiyaan360 to change that.</p>
+      <p>Today we serve 200+ businesses and manage everything from Instagram accounts and video production to giant mall hoardings and LED signboards — all from our base in Kanpur.</p>
+    </div>
+    <div class="about-visual">
+      <div class="av-stat">
+        <div class="av-stat-num">200+</div>
+        <div class="av-stat-desc">Businesses across Kanpur trust us with their marketing</div>
+      </div>
+      <div class="av-stat">
+        <div class="av-stat-num">5+</div>
+        <div class="av-stat-desc">Years building brands in the Kanpur market</div>
+      </div>
+      <div class="av-stat">
+        <div class="av-stat-num">360°</div>
+        <div class="av-stat-desc">Digital, print, and on-ground — the only agency you need</div>
+      </div>
+      <div class="av-stat">
+        <div class="av-stat-num">₹3.5K</div>
+        <div class="av-stat-desc">Plans starting from — premium results, realistic pricing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div style="margin-bottom:70px;">
+    <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">How We Work</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;margin-bottom:10px;">OUR VALUES</h2>
+    <p style="font-size:14px;color:var(--muted-text);max-width:500px;line-height:1.7;">The principles we hold ourselves to on every project, for every client.</p>
+    <div class="values-grid">
+      <div class="val-card"><div class="val-icon">🎯</div><div class="val-name">Results First</div><div class="val-desc">Every strategy we build is measured by real business outcomes — more bookings, more inquiries, more revenue. Not just likes and reach.</div></div>
+      <div class="val-card"><div class="val-icon">💡</div><div class="val-name">Transparency</div><div class="val-desc">You always know what we're working on, what it costs, and how it's performing. Monthly reports, no surprises, no hidden fees.</div></div>
+      <div class="val-card"><div class="val-icon">🤝</div><div class="val-name">Local Knowledge</div><div class="val-desc">We know Kanpur — its markets, its audience, its culture. That local intelligence makes our campaigns land differently than generic agency work.</div></div>
+      <div class="val-card"><div class="val-icon">🚀</div><div class="val-name">Speed</div><div class="val-desc">We don't make you wait weeks for a reel or a signboard design. We work at the pace your business needs to move.</div></div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div>
+    <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">The People</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;margin-bottom:10px;">OUR TEAM</h2>
+    <p style="font-size:14px;color:var(--muted-text);max-width:500px;line-height:1.7;">Small team, big output. Every specialist here has deep experience in their domain.</p>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar">👨‍💼</div><div class="team-name">Digiyaan360 Founders</div><div class="team-role">Strategy &amp; Direction</div></div>
+      <div class="team-card"><div class="team-avatar">📸</div><div class="team-name">Photography Team</div><div class="team-role">Brand &amp; Product Shoots</div></div>
+      <div class="team-card"><div class="team-avatar">🎬</div><div class="team-name">Video &amp; Reel Editors</div><div class="team-role">Content Production</div></div>
+      <div class="team-card"><div class="team-avatar">🔍</div><div class="team-name">SEO Specialists</div><div class="team-role">Search &amp; Local Rankings</div></div>
+      <div class="team-card"><div class="team-avatar">💻</div><div class="team-name">Web Developers</div><div class="team-role">Design &amp; Development</div></div>
+      <div class="team-card"><div class="team-avatar">🪧</div><div class="team-name">Outdoor Team</div><div class="team-role">OOH &amp; Signage Execution</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <h2>LET'S BUILD SOMETHING TOGETHER</h2>
+  <p>Ready to grow your business with Kanpur's most complete marketing agency?</p>
+  <a href="contact.html" class="btn-white">Start the Conversation</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">DIGIYAAN<span>360</span></div>
+      <p class="footer-desc">360° Marketing Agency — Digital, Print &amp; On-Ground.</p>
+      <p style="font-size:13px;color:var(--muted-text);margin-top:8px;">📞 +91-7084861080</p>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Pages</div>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portfolio.html">Portfolio</a>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Company</div>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://wa.me/917084861080" target="_blank">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Digiyaan360. All rights reserved.</span>
+    <span>Optimize · Advertise · Amplify</span>
+  </div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>
