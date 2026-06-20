@@ -7,231 +7,369 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-/* ── HOME HERO ── */
+/* ══ HERO ══ */
 .hero {
   min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  padding: 120px 5% 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 120px 6% 80px;
   position: relative;
   overflow: hidden;
+  gap: 40px;
 }
+
+/* Light theme: rich gradient so the hero has visual depth */
+[data-theme="light"] .hero {
+  background: linear-gradient(135deg,#c8dbff 0%,#eaf0ff 40%,#d4e4ff 100%);
+}
+
+/* Fix: gold (#FFE127) is invisible on a light background */
+[data-theme="light"] .hero-title .gold { color: #9a7000; }
+[data-theme="light"] .hero-eyebrow     { color: #9a7000; }
+[data-theme="light"] .srv-price        { color: #9a7000; }
+[data-theme="light"] .review-stars     { color: #b8900a; }
+
+/* Soft ambient orbs behind content */
+.hero-orb {
+  position: absolute; border-radius: 50%;
+  pointer-events: none; filter: blur(90px);
+}
+.hero-orb-1 {
+  width: 520px; height: 520px; background: var(--primary);
+  top: -140px; left: -80px; opacity: .22;
+}
+.hero-orb-2 {
+  width: 320px; height: 320px; background: var(--gold);
+  bottom: -40px; right: 8%; opacity: .07;
+}
+[data-theme="light"] .hero-orb-1 { opacity: .07; }
+[data-theme="light"] .hero-orb-2 { opacity: .04; }
+
+/* Left column */
+.hero-content { position: relative; z-index: 2; }
+
 .hero-eyebrow {
   font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 20px;
-  display: flex; align-items: center; gap: 10px;
+  color: var(--gold); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 12px;
 }
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.4;
+.hero-eyebrow::before,.hero-eyebrow::after {
+  content:''; width:36px; height:1px; background:currentColor; opacity:.45;
 }
+
 .hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(54px, 10vw, 130px);
-  line-height: 0.9;
-  letter-spacing: 2px;
-  margin-bottom: 24px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size: clamp(56px,9vw,118px);
+  line-height: .9; letter-spacing: 2px; margin-bottom: 24px;
 }
 .hero-title .blue { color: var(--primary); }
 .hero-title .gold { color: var(--gold); }
+
 .hero-sub {
-  font-size: clamp(14px, 2vw, 18px);
-  color: var(--muted-text);
-  max-width: 600px;
-  line-height: 1.7;
-  margin-bottom: 14px;
+  font-size: clamp(14px,1.6vw,17px);
+  color: var(--muted-text); max-width: 460px;
+  line-height: 1.8; margin-bottom: 12px;
 }
 .hero-hindi {
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  font-size: 14px; color: var(--muted-text); opacity: 0.6;
-  margin-bottom: 40px;
+  font-family:'Noto Sans Devanagari',sans-serif;
+  font-size:14px; color:var(--muted-text); opacity:.7; margin-bottom:36px;
 }
-.hero-cta {
-  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-}
+.hero-cta { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px; }
+.hero-trust { display:flex; gap:18px; flex-wrap:wrap; }
+.hero-trust span { font-size:12px; color:var(--muted-text); }
+
+/* Buttons (hero-specific sizes) */
 .btn-primary {
-  padding: 15px 40px;
-  background: linear-gradient(135deg, var(--primary) 0%, #1a3d80 100%);
-  color: #fff; border: none; border-radius: 2px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 17px; letter-spacing: 2px;
-  cursor: pointer; text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  padding:15px 40px;
+  background:linear-gradient(135deg,var(--primary) 0%,#1a3d80 100%);
+  color:#fff; border:none; border-radius:2px;
+  font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:2px;
+  cursor:pointer; text-decoration:none; display:inline-block;
+  transition:transform .2s,box-shadow .2s;
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(36,82,160,0.4); }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(36,82,160,.4); }
 .btn-outline {
-  padding: 15px 40px;
-  background: transparent;
-  color: var(--text); border: 1px solid var(--border);
-  border-radius: 2px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 17px; letter-spacing: 2px;
-  cursor: pointer; text-decoration: none;
-  transition: border-color 0.2s, color 0.2s;
+  padding:15px 40px; background:transparent;
+  color:var(--text); border:1.5px solid var(--border); border-radius:2px;
+  font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:2px;
+  cursor:pointer; text-decoration:none; display:inline-block;
+  transition:border-color .2s,color .2s;
 }
-.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-outline:hover { border-color:var(--primary); color:var(--primary); }
 
-/* Stats bar */
-.stats-bar {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  margin: 0 5%;
-}
-.stat-item {
-  padding: 36px 24px; text-align: center;
-  border-right: 1px solid var(--border);
-}
-.stat-item:last-child { border-right: none; }
-.stat-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(36px, 5vw, 60px);
-  line-height: 1;
-  background: linear-gradient(135deg, var(--primary), var(--gold));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.stat-label { font-size: 11px; color: var(--muted-text); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
-
-/* Services preview */
-.section { padding: 90px 5%; }
-.section-label {
-  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
-  color: var(--primary); margin-bottom: 14px;
-}
-.section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(34px, 5vw, 60px);
-  line-height: 1.1;
-  margin-bottom: 14px;
-}
-.section-sub { font-size: 15px; color: var(--muted-text); max-width: 520px; line-height: 1.7; }
-
-.services-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border);
-  margin-top: 50px;
-}
-.srv-card {
-  background: var(--card-bg);
-  padding: 36px 28px;
-  transition: background 0.2s;
-  cursor: pointer;
-}
-.srv-card:hover { background: var(--card-hover); }
-.srv-icon { font-size: 32px; margin-bottom: 18px; }
-.srv-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px; letter-spacing: 1px;
-  margin-bottom: 10px; color: var(--text);
-}
-.srv-desc { font-size: 13px; color: var(--muted-text); line-height: 1.7; }
-.srv-price {
-  margin-top: 18px;
-  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--gold);
+/* ── RIGHT COLUMN: visual ── */
+.hero-visual {
+  position: relative;
+  height: 520px;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
 }
 
-/* Plans teaser */
-.plans-teaser {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 20px; margin-top: 50px;
+/* ── BILLBOARD ── */
+.billboard-scene {
+  display: flex; flex-direction: column; align-items: center;
+  animation: bb-sway 7s ease-in-out infinite;
 }
-.plan-card {
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 36px 28px;
-  background: var(--card-bg);
+@keyframes bb-sway {
+  0%,100% { transform: rotate(-0.6deg); }
+  50%      { transform: rotate(0.6deg); }
+}
+
+.bb-board {
+  width: 300px; height: 178px;
+  background: #060a14;
+  border: 3px solid #2452A0;
+  border-radius: 6px;
   position: relative; overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 0 1px rgba(36,82,160,.25), 0 0 50px rgba(36,82,160,.22),
+              inset 0 0 40px rgba(0,0,0,.6);
+  animation: bb-glow 3.5s ease-in-out infinite;
 }
-.plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
-.plan-card.featured { border-color: var(--primary); }
-.plan-badge {
-  position: absolute; top: 0; right: 0;
-  padding: 5px 14px; background: var(--primary);
-  font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #fff;
-  border-radius: 0 4px 0 4px;
+@keyframes bb-glow {
+  0%,100% { box-shadow: 0 0 0 1px rgba(36,82,160,.25), 0 0 40px rgba(36,82,160,.18), inset 0 0 40px rgba(0,0,0,.6); }
+  50%      { box-shadow: 0 0 0 1px rgba(36,82,160,.5),  0 0 70px rgba(36,82,160,.38), inset 0 0 40px rgba(0,0,0,.6); }
 }
-.plan-tier {
-  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-  color: var(--muted-text); margin-bottom: 12px;
-}
-.plan-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 32px; letter-spacing: 2px;
-  margin-bottom: 6px;
-}
-.plan-price {
-  font-size: 13px; color: var(--muted-text); margin-bottom: 20px;
-}
-.plan-price strong {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 42px; letter-spacing: 1px; color: var(--text);
-}
-.plan-features { list-style: none; margin-bottom: 28px; }
-.plan-features li {
-  font-size: 13px; color: var(--muted-text);
-  padding: 6px 0; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 8px;
-}
-.plan-features li::before { content: '✓'; color: var(--primary); font-weight: 700; }
 
-/* Testimonials */
-.reviews-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px; margin-top: 50px;
+/* Decorative border lights */
+.bb-lights {
+  position: absolute; left:5px; right:5px;
+  display: flex; justify-content: space-between; z-index: 2;
 }
-.review-card {
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: 4px; padding: 28px;
+.bb-lights-top    { top: 5px; }
+.bb-lights-bottom { bottom: 5px; }
+.bb-lights i {
+  display:block; width:5px; height:5px; border-radius:50%;
+  background:var(--gold); box-shadow:0 0 5px var(--gold);
+  animation:lb 1.8s ease-in-out infinite;
 }
-.review-stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; }
-.review-text { font-size: 14px; color: var(--muted-text); line-height: 1.7; margin-bottom: 18px; }
-.review-author { font-weight: 700; font-size: 13px; }
-.review-biz { font-size: 12px; color: var(--muted-text); }
+.bb-lights i:nth-child(1){animation-delay:.00s}
+.bb-lights i:nth-child(2){animation-delay:.22s}
+.bb-lights i:nth-child(3){animation-delay:.44s}
+.bb-lights i:nth-child(4){animation-delay:.66s}
+.bb-lights i:nth-child(5){animation-delay:.88s}
+.bb-lights i:nth-child(6){animation-delay:1.10s}
+.bb-lights i:nth-child(7){animation-delay:1.32s}
+.bb-lights i:nth-child(8){animation-delay:1.54s}
+@keyframes lb { 0%,100%{opacity:1} 50%{opacity:.12} }
 
-/* CTA band */
-.cta-band {
-  background: linear-gradient(135deg, var(--primary) 0%, #1a3d80 100%);
-  padding: 80px 5%; text-align: center;
+/* Slide area */
+.bb-screen {
+  position:absolute; inset:18px 8px 20px 8px;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; overflow:hidden;
 }
-.cta-band h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(36px, 6vw, 72px); letter-spacing: 2px;
-  margin-bottom: 16px; color: #fff;
+.bb-slide {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:6px 10px; opacity:0;
+  animation:bbf 16s ease-in-out infinite;
 }
-.cta-band p { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 36px; }
-.btn-white {
-  padding: 15px 40px; background: #fff; color: var(--primary);
-  border: none; border-radius: 2px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 17px; letter-spacing: 2px;
-  cursor: pointer; text-decoration: none;
-  transition: transform 0.2s;
+.bb-slide:nth-child(1){animation-delay:0s}
+.bb-slide:nth-child(2){animation-delay:4s}
+.bb-slide:nth-child(3){animation-delay:8s}
+.bb-slide:nth-child(4){animation-delay:12s}
+@keyframes bbf {
+  0%   {opacity:0;transform:translateY(8px)}
+  5%   {opacity:1;transform:translateY(0)}
+  20%  {opacity:1;transform:translateY(0)}
+  25%  {opacity:0;transform:translateY(-8px)}
+  100% {opacity:0}
 }
-.btn-white:hover { transform: translateY(-2px); }
+.bbi-tag {
+  font-size:8px; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--gold); font-weight:700; font-family:'Manrope',sans-serif;
+  margin-bottom:3px;
+}
+.bbi-head {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px; letter-spacing:2px; line-height:1; color:#fff;
+}
+.bbi-sub {
+  font-size:8px; letter-spacing:1.5px; text-transform:uppercase;
+  color:rgba(255,255,255,.4); font-family:'Manrope',sans-serif;
+  font-weight:600; margin-top:5px;
+}
 
-/* Hero BG rings */
+/* Ticker strip */
+.bb-ticker {
+  position:absolute; bottom:0; left:0; right:0; height:17px;
+  background:linear-gradient(90deg,#1a3080,#2452A0,#1a3080);
+  display:flex; align-items:center; overflow:hidden;
+}
+.bb-ticker-text {
+  white-space:nowrap; font-size:7px; letter-spacing:2px; text-transform:uppercase;
+  color:rgba(255,255,255,.9); font-weight:700; font-family:'Manrope',sans-serif;
+  animation:tick 18s linear infinite; padding-left:100%;
+}
+@keyframes tick { from{transform:translateX(0)} to{transform:translateX(-100%)} }
+
+/* Poles */
+.bb-poles { display:flex; gap:104px; }
+.bb-pole {
+  width:7px; height:108px;
+  background:linear-gradient(180deg,#1a3080 0%,#2452A0 45%,#1a3080 100%);
+  border-radius:0 0 3px 3px;
+}
+
+/* Ground bar */
+.bb-ground {
+  width:360px; height:10px;
+  background:linear-gradient(90deg,transparent 0%,#2452A0 12%,#2452A0 88%,transparent 100%);
+  border-radius:5px;
+  box-shadow:0 0 22px rgba(36,82,160,.4), 0 3px 10px rgba(36,82,160,.2);
+}
+
+/* Two people holding the billboard */
+.bb-holders {
+  display:flex; gap:178px; margin-top:2px;
+}
+.bb-holder {
+  font-size:26px; line-height:1;
+  animation:holder-bob 2.5s ease-in-out infinite;
+  filter:saturate(0.7);
+}
+.bb-holder:nth-child(2){animation-delay:.5s}
+@keyframes holder-bob {
+  0%,100%{transform:translateY(0)}
+  50%    {transform:translateY(-5px)}
+}
+
+/* ── FLOATING SOCIAL BUBBLES ── */
+.social-bubble {
+  position:absolute;
+  display:flex; align-items:center; gap:7px;
+  background:var(--card-bg);
+  border:1.5px solid var(--border);
+  border-radius:40px;
+  padding:8px 14px 8px 10px;
+  box-shadow:0 4px 16px var(--shadow);
+  animation:bubblefloat var(--dur,3.8s) ease-in-out infinite var(--delay,0s);
+  white-space:nowrap; z-index:10;
+  backdrop-filter:blur(8px);
+}
+[data-theme="light"] .social-bubble {
+  background:rgba(255,255,255,.93);
+  border-color:rgba(36,82,160,.18);
+  box-shadow:0 4px 18px rgba(36,82,160,.12);
+}
+.social-bubble .sb-emoji { font-size:18px; line-height:1; }
+.sb-name { font-size:10px; font-weight:700; color:var(--text); letter-spacing:.3px; }
+
+.sb-1{top:2%;  left:0%;   --delay:0s;   --dur:3.5s}
+.sb-2{top:2%;  right:4%;  --delay:.7s;  --dur:4.2s}
+.sb-3{top:38%; left:-4%;  --delay:1.4s; --dur:3.8s}
+.sb-4{top:38%; right:-4%; --delay:.3s;  --dur:4.5s}
+.sb-5{bottom:24%;left:3%; --delay:1.1s; --dur:3.2s}
+.sb-6{bottom:24%;right:3%;--delay:2.0s; --dur:4.8s}
+.sb-7{bottom:4%;left:18%; --delay:.5s;  --dur:3.6s}
+.sb-8{bottom:4%;right:18%;--delay:1.7s; --dur:4.1s}
+
+@keyframes bubblefloat {
+  0%,100%{transform:translateY(0) rotate(-.8deg)}
+  50%    {transform:translateY(-14px) rotate(.8deg)}
+}
+
+/* ── HERO BG RINGS ── */
 .hero-rings {
-  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0;
 }
 .ring {
-  position: absolute; border-radius: 50%;
-  border: 1px solid rgba(36,82,160,0.12);
-  top: 50%; left: 50%; transform: translate(-50%, -50%);
-  animation: ring-pulse 4s ease-in-out infinite;
+  position:absolute; border-radius:50%;
+  border:1px solid rgba(36,82,160,.1);
+  top:50%; left:30%; transform:translate(-50%,-50%);
+  animation:ring-pulse 4.5s ease-in-out infinite;
 }
-.ring:nth-child(1) { width: 400px; height: 400px; }
-.ring:nth-child(2) { width: 650px; height: 650px; animation-delay: 1.3s; }
-.ring:nth-child(3) { width: 900px; height: 900px; animation-delay: 2.6s; }
-@keyframes ring-pulse { 0%,100%{opacity:0.2}50%{opacity:0.6} }
+.ring:nth-child(1){width:380px;height:380px}
+.ring:nth-child(2){width:620px;height:620px;animation-delay:1.5s}
+.ring:nth-child(3){width:860px;height:860px;animation-delay:3s}
+@keyframes ring-pulse{0%,100%{opacity:.25}50%{opacity:.7}}
+[data-theme="light"] .ring{border-color:rgba(36,82,160,.18)}
 
+/* ── STATS BAR ── */
+.stats-bar {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  margin:0 5%;
+}
+.stat-item { padding:36px 24px; text-align:center; border-right:1px solid var(--border); }
+.stat-item:last-child{border-right:none}
+.stat-num {
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,5vw,60px); line-height:1;
+  background:linear-gradient(135deg,var(--primary),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-label{font-size:11px;color:var(--muted-text);letter-spacing:2px;text-transform:uppercase;margin-top:6px}
+
+/* ── SERVICES GRID ── */
+.section{padding:90px 5%}
+.services-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1px; background:var(--border); border:1px solid var(--border); margin-top:50px;
+}
+.srv-card{background:var(--card-bg);padding:36px 28px;transition:background .2s;cursor:pointer}
+.srv-card:hover{background:var(--card-hover)}
+.srv-icon{font-size:32px;margin-bottom:18px}
+.srv-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:10px;color:var(--text)}
+.srv-desc{font-size:13px;color:var(--muted-text);line-height:1.7}
+.srv-price{margin-top:18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+
+/* ── PLANS TEASER ── */
+.plans-teaser{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px}
+.plan-card {
+  border:1px solid var(--border); border-radius:4px;
+  padding:36px 28px; background:var(--card-bg);
+  position:relative; overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.plan-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.2)}
+.plan-card.featured{border-color:var(--primary)}
+.plan-badge{position:absolute;top:0;right:0;padding:5px 14px;background:var(--primary);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#fff;border-radius:0 4px 0 4px}
+.plan-tier{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--muted-text);margin-bottom:12px}
+.plan-name{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;margin-bottom:6px}
+.plan-price{font-size:13px;color:var(--muted-text);margin-bottom:20px}
+.plan-price strong{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:1px;color:var(--text)}
+.plan-features{list-style:none;margin-bottom:28px}
+.plan-features li{font-size:13px;color:var(--muted-text);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.plan-features li::before{content:'✓';color:var(--primary);font-weight:700}
+
+/* ── REVIEWS ── */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:50px}
+.review-card{background:var(--card-bg);border:1px solid var(--border);border-radius:4px;padding:28px}
+.review-stars{color:var(--gold);font-size:14px;margin-bottom:14px}
+.review-text{font-size:14px;color:var(--muted-text);line-height:1.7;margin-bottom:18px}
+.review-author{font-weight:700;font-size:13px}
+.review-biz{font-size:12px;color:var(--muted-text)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;text-align:center;padding-top:100px;gap:16px}
+  .hero-content{display:flex;flex-direction:column;align-items:center}
+  .hero-eyebrow::before,.hero-eyebrow::after{display:none}
+  .hero-cta{justify-content:center}
+  .hero-trust{justify-content:center}
+  .hero-sub{text-align:center}
+  .hero-visual{height:380px}
+  .bb-board{width:260px;height:154px}
+  .bb-poles{gap:88px}
+  .bb-ground{width:300px}
+  .bb-pole{height:86px}
+  .bb-holders{gap:148px}
+}
+@media(max-width:640px){
+  .hero-visual{height:280px}
+  .bb-board{width:220px;height:130px}
+  .bbi-head{font-size:22px}
+  .bb-poles{gap:74px}
+  .bb-ground{width:256px}
+  .bb-holders{gap:120px}
+  .bb-holder{font-size:20px}
+  .sb-3,.sb-4,.sb-5,.sb-6{display:none}
+}
 @media(max-width:768px){
-  .stats-bar { grid-template-columns: repeat(2,1fr); }
-  .stat-item:nth-child(2) { border-right: none; }
-  .plans-teaser { grid-template-columns: 1fr; }
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .stat-item:nth-child(2){border-right:none}
+  .plans-teaser{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -278,15 +416,94 @@
   <div class="hero-rings">
     <div class="ring"></div><div class="ring"></div><div class="ring"></div>
   </div>
-  <div class="hero-eyebrow">Kanpur's #1 Digital Agency</div>
-  <h1 class="hero-title">
-    <span class="blue">DIGI</span><span class="gold">YAAN</span><br>360°
-  </h1>
-  <p class="hero-sub">One agency for everything — social media, video production, SEO, signboards, hoardings, and more. We grow your business 360 degrees.</p>
-  <p class="hero-hindi">डिजिटल से ऑफलाइन तक — सब कुछ एक जगह</p>
-  <div class="hero-cta">
-    <a href="pricing.html" class="btn-primary">View Plans & Pricing</a>
-    <a href="portfolio.html" class="btn-outline">See Our Work</a>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <!-- LEFT: Text -->
+  <div class="hero-content">
+    <div class="hero-eyebrow">Kanpur's #1 Digital Agency</div>
+    <h1 class="hero-title">
+      <span class="blue">DIGI</span><span class="gold">YAAN</span><br>360°
+    </h1>
+    <p class="hero-sub">One agency for everything — social media, video production, SEO, signboards, hoardings, and more. We grow your business <strong>360 degrees</strong>.</p>
+    <p class="hero-hindi">डिजिटल से ऑफलाइन तक — सब कुछ एक जगह</p>
+    <div class="hero-cta">
+      <a href="pricing.html" class="btn-primary">View Plans & Pricing</a>
+      <a href="portfolio.html" class="btn-outline">See Our Work</a>
+    </div>
+    <div class="hero-trust">
+      <span>✓ No Lock-in Contract</span>
+      <span>✓ 2-Hour Response</span>
+      <span>✓ 200+ Clients</span>
+    </div>
+  </div>
+
+  <!-- RIGHT: Animated billboard + floating icons -->
+  <div class="hero-visual" aria-hidden="true">
+
+    <!-- Floating social media bubbles -->
+    <div class="social-bubble sb-1"><span class="sb-emoji">📸</span><span class="sb-name">Instagram</span></div>
+    <div class="social-bubble sb-2"><span class="sb-emoji">🎬</span><span class="sb-name">YouTube</span></div>
+    <div class="social-bubble sb-3"><span class="sb-emoji">💙</span><span class="sb-name">Facebook</span></div>
+    <div class="social-bubble sb-4"><span class="sb-emoji">💬</span><span class="sb-name">WhatsApp</span></div>
+    <div class="social-bubble sb-5"><span class="sb-emoji">🔍</span><span class="sb-name">SEO</span></div>
+    <div class="social-bubble sb-6"><span class="sb-emoji">💻</span><span class="sb-name">Website</span></div>
+    <div class="social-bubble sb-7"><span class="sb-emoji">🤖</span><span class="sb-name">AI Tools</span></div>
+    <div class="social-bubble sb-8"><span class="sb-emoji">📈</span><span class="sb-name">Google Ads</span></div>
+
+    <!-- Billboard structure -->
+    <div class="billboard-scene">
+
+      <!-- Board -->
+      <div class="bb-board">
+        <div class="bb-lights bb-lights-top"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+        <div class="bb-screen">
+          <div class="bb-slide">
+            <div class="bbi-tag">📱 SOCIAL MEDIA</div>
+            <div class="bbi-head">INSTAGRAM &amp;<br>FACEBOOK</div>
+            <div class="bbi-sub">Posts · Reels · Ads · Growth</div>
+          </div>
+          <div class="bb-slide">
+            <div class="bbi-tag">🪧 OUTDOOR</div>
+            <div class="bbi-head">HOARDINGS &amp;<br>BANNERS</div>
+            <div class="bbi-sub">Flex · Signboards · Print · Wall</div>
+          </div>
+          <div class="bb-slide">
+            <div class="bbi-tag">💻 DIGITAL</div>
+            <div class="bbi-head">WEBSITES &amp;<br>SEO</div>
+            <div class="bbi-sub">Rank · Leads · Convert · Grow</div>
+          </div>
+          <div class="bb-slide">
+            <div class="bbi-tag">🤖 AI POWERED</div>
+            <div class="bbi-head">AUTOMATION &amp;<br>CHATBOTS</div>
+            <div class="bbi-sub">WhatsApp · CRM · Lead Gen</div>
+          </div>
+        </div>
+
+        <div class="bb-ticker">
+          <div class="bb-ticker-text">DIGIYAAN360 · KANPUR · 360° MARKETING AGENCY · SOCIAL MEDIA · OUTDOOR · WEBSITES · SEO · AI AUTOMATION · &nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </div>
+
+        <div class="bb-lights bb-lights-bottom"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+
+      <!-- Support poles -->
+      <div class="bb-poles">
+        <div class="bb-pole"></div>
+        <div class="bb-pole"></div>
+      </div>
+
+      <!-- Ground platform -->
+      <div class="bb-ground"></div>
+
+      <!-- People holding the billboard -->
+      <div class="bb-holders">
+        <div class="bb-holder">🧑‍💼</div>
+        <div class="bb-holder">👨‍💼</div>
+      </div>
+
+    </div>
   </div>
 </section>
 
