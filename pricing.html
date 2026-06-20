@@ -3,197 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing Plans – Digiyaan360</title>
-<link rel="stylesheet" href="shared.css">
+<title>Pricing – Digiyaan360</title>
+<link rel="stylesheet" href="style.css">
 <style>
-/* ── PRICING SPECIFIC ── */
-.pricing-intro { padding: 40px 5% 0; text-align: center; }
-.pricing-intro p { font-size: 15px; color: var(--muted-text); max-width: 600px; margin: 14px auto 0; line-height: 1.7; }
+/* pricing page extras */
+.trust-bar{display:flex;gap:20px;flex-wrap:wrap;padding:20px 5%;background:var(--bg3);border-bottom:1px solid var(--border);}
+.tb-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);}
+.tb-item strong{color:var(--text);}
 
-/* Tab switcher */
-.plan-tabs {
-  display: flex; justify-content: center; gap: 0;
-  margin: 40px auto; width: fit-content;
-  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
-}
-.plan-tab {
-  padding: 12px 32px;
-  background: none; border: none;
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--muted-text);
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  border-right: 1px solid var(--border);
-}
-.plan-tab:last-child { border-right: none; }
-.plan-tab.active {
-  background: var(--primary); color: #fff;
-}
+.category-block{margin-bottom:80px;}
+.cat-tag{display:inline-block;padding:3px 12px;border-radius:10px;background:var(--primary);color:#fff;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:14px;}
+.cat-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,4vw,48px);letter-spacing:2px;margin-bottom:8px;color:var(--text);}
+.cat-desc{font-size:14px;color:var(--text2);max-width:580px;line-height:1.75;margin-bottom:0;}
 
-/* Plans grid */
-.plans-section { padding: 20px 5% 80px; }
-.plans-grid {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 24px; max-width: 1100px; margin: 0 auto;
-}
-.pc {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px; overflow: hidden;
-  position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.pc:hover { transform: translateY(-5px); box-shadow: 0 20px 50px var(--shadow); }
-.pc.popular { border-color: var(--primary); }
-.pc-badge {
-  background: var(--primary); color: #fff;
-  text-align: center; padding: 6px;
-  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-  font-weight: 700;
-}
-.pc-head {
-  padding: 32px 28px 24px;
-  border-bottom: 1px solid var(--border);
-}
-.pc-tier {
-  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-  color: var(--muted-text); margin-bottom: 10px;
-}
-.pc-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 38px; letter-spacing: 2px; line-height: 1;
-  margin-bottom: 8px;
-}
-.pc-tagline { font-size: 12px; color: var(--muted-text); margin-bottom: 20px; }
-.pc-price {
-  display: flex; align-items: baseline; gap: 4px;
-  margin-bottom: 6px;
-}
-.pc-price .curr { font-size: 20px; font-weight: 700; color: var(--primary); }
-.pc-price .amount {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 52px; letter-spacing: 1px; line-height: 1;
-}
-.pc-price .period { font-size: 13px; color: var(--muted-text); }
-.pc-saving {
-  display: inline-block; padding: 3px 12px;
-  background: rgba(255,225,39,0.1); color: var(--gold);
-  border-radius: 10px; font-size: 11px; font-weight: 700;
-  margin-top: 6px;
-}
-.pc-body { padding: 28px; }
-.pc-section-label {
-  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--primary); margin-bottom: 12px; margin-top: 20px;
-}
-.pc-section-label:first-child { margin-top: 0; }
-.pc-features { list-style: none; }
-.pc-features li {
-  font-size: 13px; color: var(--muted-text);
-  padding: 7px 0; border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
-}
-.pc-features li .ck { color: var(--primary); font-size: 12px; flex-shrink: 0; margin-top: 2px; }
-.pc-features li .xk { color: #cc3333; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
-.pc-features li.highlight { color: var(--text); font-weight: 600; }
-.pc-foot {
-  padding: 24px 28px 28px;
-  border-top: 1px solid var(--border);
-}
-.btn-plan {
-  display: block; width: 100%;
-  padding: 14px; text-align: center;
-  border: 2px solid var(--primary);
-  border-radius: 2px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 16px; letter-spacing: 2px;
-  color: var(--primary);
-  transition: background 0.2s, color 0.2s;
-  cursor: pointer; text-decoration: none;
-}
-.btn-plan:hover, .pc.popular .btn-plan {
-  background: var(--primary); color: #fff;
-}
-.pc.popular .btn-plan:hover {
-  background: var(--primary-light);
-}
+.price-section{padding:60px 5% 0;}
+.sec-block{margin-bottom:60px;}
 
-/* Individual service pricing */
-.service-pricing { padding: 0 5% 80px; }
-.sp-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(28px, 4vw, 48px); letter-spacing: 2px;
-  margin-bottom: 10px;
-}
-.sp-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 4px; overflow: hidden;
-  margin-top: 36px;
-}
-.sp-item {
-  background: var(--card-bg);
-  padding: 28px 24px;
-}
-.sp-icon { font-size: 28px; margin-bottom: 12px; }
-.sp-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
-.sp-desc { font-size: 12px; color: var(--muted-text); line-height: 1.6; margin-bottom: 14px; }
-.sp-price-row { display: flex; align-items: baseline; gap: 6px; }
-.sp-price-label { font-size: 11px; color: var(--muted-text); }
-.sp-price-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px; letter-spacing: 1px; color: var(--primary);
-}
+/* Individual rate table */
+.rate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-top:28px;}
+.rate-item{background:var(--card);padding:22px 20px;transition:background .2s;}
+.rate-item:hover{background:var(--card-hover);}
+.rate-icon{font-size:24px;margin-bottom:10px;}
+.rate-name{font-weight:700;font-size:13px;color:var(--text);margin-bottom:4px;}
+.rate-desc{font-size:11.5px;color:var(--text2);line-height:1.6;margin-bottom:10px;}
+.rate-price{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--primary);margin-bottom:8px;}
+.rate-add-btn{padding:6px 14px;background:var(--primary);color:#fff;border:none;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:background .2s;}
+.rate-add-btn:hover{background:var(--primary-light);}
+.rate-add-btn.added{background:#22c55e;}
 
-/* FAQ */
-.faq-section { padding: 0 5% 80px; }
-.faq-item {
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
-}
-.faq-q {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 20px 0; cursor: pointer; font-weight: 600; font-size: 15px;
-  transition: color 0.2s;
-}
-.faq-q:hover { color: var(--primary); }
-.faq-icon { font-size: 18px; transition: transform 0.2s; }
-.faq-a {
-  font-size: 14px; color: var(--muted-text); line-height: 1.7;
-  max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s;
-}
-.faq-item.open .faq-a { max-height: 200px; padding-bottom: 16px; }
-.faq-item.open .faq-icon { transform: rotate(45deg); }
+/* Sticky cart total bar */
+.sticky-total{position:sticky;bottom:0;z-index:800;background:var(--bg2);border-top:2px solid var(--primary);padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.st-label{font-size:13px;color:var(--text2);}
+.st-amount{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--text);}
+.st-btns{display:flex;gap:10px;}
+.st-view-btn{padding:10px 20px;background:var(--card);border:1px solid var(--border);border-radius:3px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;color:var(--text);cursor:pointer;}
+.st-checkout-btn{padding:10px 24px;background:#25D366;color:#fff;border:none;border-radius:3px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;cursor:pointer;}
 
-/* Trust badges */
-.trust-row {
-  display: flex; gap: 24px; flex-wrap: wrap;
-  margin: 36px 5%;
-  padding: 24px 28px;
-  background: var(--card-bg);
-  border: 1px solid var(--border); border-radius: 4px;
-}
-.trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
-.trust-item .ti { font-size: 22px; }
-
-@media(max-width:900px){
-  .plans-grid { grid-template-columns: 1fr; }
-}
-@media(max-width:600px){
-  .plan-tabs { flex-wrap: wrap; }
-}
+/* Bundle cards */
+.bundle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:28px;}
+.bundle-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:24px;transition:border-color .2s,transform .2s;}
+.bundle-card:hover{border-color:var(--primary);transform:translateY(-3px);}
+.bundle-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:6px;color:var(--text);}
+.bundle-price{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;color:var(--primary);margin-bottom:4px;}
+.bundle-includes{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:14px;}
+.bundle-includes li{padding:3px 0;display:flex;gap:6px;align-items:flex-start;}
+.bundle-includes li::before{content:'→';color:var(--primary);flex-shrink:0;}
 </style>
 </head>
 <body>
+<div class="cur" id="cursor"></div>
+<div class="cur-r" id="cursorRing"></div>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-head">
+    <h3>🛒 MY SERVICES</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total">
+      <span class="cart-total-label">Monthly Total</span>
+      <span class="cart-total-price" id="cartTotal">₹0</span>
+    </div>
+    <p class="cart-note">💬 We'll confirm your plan details and get you started via WhatsApp within hours.</p>
+    <button class="cart-checkout" onclick="Cart.checkout()">💬 ENQUIRE ON WHATSAPP</button>
+  </div>
+</div>
 
+<!-- NAV -->
 <nav id="mainNav">
-  <a href="index.html" class="nav-logo">DIGIYAAN<span>360</span></a>
+  <a href="index.html" class="nav-logo">DIGIYAAN360</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="services.html">Services</a></li>
@@ -203,457 +84,649 @@
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <div class="nav-actions">
-    <button class="theme-toggle" id="themeToggle"><span id="themeIcon">☀️</span></button>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle"><span id="themeIcon">☀️</span></button>
+    <button class="cart-btn" onclick="openCart()">🛒 Cart <span class="cart-count hidden" id="cartCount">0</span></button>
     <a href="contact.html" class="nav-cta">Get Started</a>
     <button class="hamburger" id="hamburger">☰</button>
   </div>
 </nav>
 
 <!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="page-header-label">Transparent Pricing</div>
-  <h1>PLANS &amp; PRICING</h1>
-  <p>Fixed plans, zero hidden costs. Pick the right fit for your business size — Starter, Growth, or Enterprise.</p>
+<div class="pg-head">
+  <div class="pg-label">Shop Our Services</div>
+  <h1>PLANS & PRICING</h1>
+  <p>Browse, add to cart, and enquire on WhatsApp — our team responds within hours. Transparent pricing, zero hidden charges.</p>
 </div>
 
-<!-- TRUST ROW -->
-<div class="trust-row">
-  <div class="trust-item"><span class="ti">✅</span> No Hidden Fees</div>
-  <div class="trust-item"><span class="ti">📞</span> Dedicated Account Manager</div>
-  <div class="trust-item"><span class="ti">📊</span> Monthly Performance Report</div>
-  <div class="trust-item"><span class="ti">🤝</span> No Long-Term Lock-In</div>
-  <div class="trust-item"><span class="ti">🇮🇳</span> Kanpur-Based Team</div>
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="tb-item">✅ <strong>No Hidden Fees</strong></div>
+  <div class="tb-item">📞 <strong>Dedicated Manager</strong></div>
+  <div class="tb-item">📊 <strong>Monthly Reports</strong></div>
+  <div class="tb-item">🤝 <strong>No Lock-In — Cancel Anytime</strong></div>
+  <div class="tb-item">⚡ <strong>Response in 2–4 Hours</strong></div>
+  <div class="tb-item">🛒 <strong>Add to Cart → WhatsApp → Done</strong></div>
 </div>
 
-<!-- TABS -->
-<div class="pricing-intro">
-  <div class="section-label" style="text-align:center;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Choose Your Plan</div>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);letter-spacing:2px;">STARTER · GROWTH · ENTERPRISE</h2>
-  <p>Every plan includes dedicated support, a monthly report, and full Digiyaan360 brand expertise.</p>
-</div>
-<div class="plan-tabs">
-  <button class="plan-tab active" onclick="switchTab('digital',this)">Digital Marketing</button>
-  <button class="plan-tab" onclick="switchTab('content',this)">Content Creation</button>
-  <button class="plan-tab" onclick="switchTab('complete',this)">Complete 360°</button>
-</div>
+<div class="price-section">
 
-<!-- DIGITAL MARKETING PLANS -->
-<div class="plans-section" id="tab-digital">
-  <div class="plans-grid">
-    <!-- STARTER -->
-    <div class="pc">
-      <div class="pc-head">
-        <div class="pc-tier">Small Business</div>
-        <div class="pc-name">STARTER</div>
-        <div class="pc-tagline">Perfect for local shops, parlours &amp; startups</div>
-        <div class="pc-price">
-          <span class="curr">₹</span>
-          <span class="amount">9,999</span>
-          <span class="period">/ month</span>
+  <!-- ══════════════════════════════════
+       SECTION 1: MONTHLY RETAINER
+       ══════════════════════════════════ -->
+  <div class="sec-block">
+    <div class="cat-tag">Section 1</div>
+    <h2 class="cat-title">Monthly Retainer Plans</h2>
+    <p class="cat-desc">The most popular way to work with us. Predictable monthly investment, consistent growth. All plans are month-to-month — no long-term contracts.</p>
+    <div class="plans-grid" style="margin-top:30px;">
+
+      <!-- STARTER -->
+      <div class="plan-card">
+        <div class="plan-head">
+          <div class="plan-tier">Small Shops · Freelancers</div>
+          <div class="plan-name">STARTER</div>
+          <div class="plan-tagline">Get online and start growing</div>
+          <div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">8,000</span><span class="plan-per">/mo</span></div>
+          <div class="plan-saving">Beginner-friendly plan</div>
         </div>
-        <div class="pc-saving">Save ₹2,500 vs individual services</div>
-      </div>
-      <div class="pc-body">
-        <div class="pc-section-label">Social Media</div>
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>Social media management (1 platform)</span></li>
-          <li><span class="ck">✓</span><span>12 posts per month</span></li>
-          <li><span class="ck">✓</span><span>2 reels / short videos per month</span></li>
-          <li><span class="ck">✓</span><span>Caption writing &amp; hashtag strategy</span></li>
-          <li><span class="xk">✗</span><span style="opacity:.5">Photography shoot</span></li>
-        </ul>
-        <div class="pc-section-label">SEO &amp; Web</div>
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>Google My Business setup &amp; optimisation</span></li>
-          <li><span class="xk">✗</span><span style="opacity:.5">Keyword SEO campaign</span></li>
-          <li><span class="xk">✗</span><span style="opacity:.5">Website support</span></li>
-        </ul>
-        <div class="pc-section-label">Reporting</div>
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>Monthly performance report</span></li>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>8 posts/month</strong> — designed and scheduled</span></li>
+          <li><span class="ck">✓</span><span>1 Meta (FB/Insta) ad campaign</span></li>
+          <li><span class="ck">✓</span><span>Basic SEO audit</span></li>
+          <li><span class="ck">✓</span><span>2 content pages written</span></li>
+          <li><span class="ck">✓</span><span>Basic monthly report</span></li>
           <li><span class="ck">✓</span><span>WhatsApp support</span></li>
+          <li><span class="xk">–</span><span style="opacity:.55">Reels / video content</span></li>
+          <li><span class="xk">–</span><span style="opacity:.55">Google Ads</span></li>
+          <li><span class="xk">–</span><span style="opacity:.55">AI Chatbot</span></li>
         </ul>
-      </div>
-      <div class="pc-foot">
-        <a href="contact.html" class="btn-plan">Get Started</a>
-      </div>
-    </div>
-
-    <!-- GROWTH -->
-    <div class="pc popular">
-      <div class="pc-badge">⭐ MOST POPULAR</div>
-      <div class="pc-head">
-        <div class="pc-tier">Growing Business</div>
-        <div class="pc-name">GROWTH</div>
-        <div class="pc-tagline">For businesses ready to scale fast</div>
-        <div class="pc-price">
-          <span class="curr">₹</span>
-          <span class="amount">19,999</span>
-          <span class="period">/ month</span>
+        <div class="plan-foot">
+          <button class="add-cart-btn" onclick="addToCart('retainer-starter','Monthly Retainer','Starter ₹8,000/mo',8000,'📱',this)">🛒 ADD TO CART</button>
         </div>
-        <div class="pc-saving">Save ₹7,000 vs individual services</div>
       </div>
-      <div class="pc-body">
-        <div class="pc-section-label">Social Media</div>
-        <ul class="pc-features">
-          <li class="highlight"><span class="ck">✓</span><span>Social media management (2 platforms)</span></li>
-          <li><span class="ck">✓</span><span>20 posts per month</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>4 reels + 1 brand video (3–5 min edit)</span></li>
-          <li><span class="ck">✓</span><span>Caption, hashtag &amp; story strategy</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>1 professional photo shoot per month</span></li>
+
+      <!-- GROWTH -->
+      <div class="plan-card featured">
+        <div class="plan-badge">⭐ MOST POPULAR</div>
+        <div class="plan-head">
+          <div class="plan-tier">Growing Businesses</div>
+          <div class="plan-name">GROWTH</div>
+          <div class="plan-tagline">Scale faster with full digital stack</div>
+          <div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">18,000</span><span class="plan-per">/mo</span></div>
+          <div class="plan-saving">Best value for results</div>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>20 posts/month</strong></span></li>
+          <li><span class="ck">✓</span><span><strong>2 reels/month</strong></span></li>
+          <li><span class="ck">✓</span><span>2 Meta campaigns + 1 Google campaign</span></li>
+          <li><span class="ck">✓</span><span>Monthly SEO + keyword tracking</span></li>
+          <li><span class="ck">✓</span><span>Basic WhatsApp automation</span></li>
+          <li><span class="ck">✓</span><span>AI Chatbot included</span></li>
+          <li><span class="ck">✓</span><span>Minor website updates</span></li>
+          <li><span class="ck">✓</span><span>Lead generation system</span></li>
+          <li><span class="ck">✓</span><span>5 content pages + detailed PDF report</span></li>
         </ul>
-        <div class="pc-section-label">SEO &amp; Web</div>
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>Google My Business management</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>SEO – 2 keywords</span></li>
-          <li><span class="ck">✓</span><span>Basic website maintenance</span></li>
-        </ul>
-        <div class="pc-section-label">Reporting</div>
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>Bi-weekly performance report</span></li>
+        <div class="plan-foot">
+          <button class="add-cart-btn" onclick="addToCart('retainer-growth','Monthly Retainer','Growth ₹18,000/mo',18000,'📈',this)">🛒 ADD TO CART</button>
+        </div>
+      </div>
+
+      <!-- PRO BRAND -->
+      <div class="plan-card">
+        <div class="plan-head">
+          <div class="plan-tier">Established Brands</div>
+          <div class="plan-name">PRO BRAND</div>
+          <div class="plan-tagline">Full marketing engine, all channels</div>
+          <div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">35,000</span><span class="plan-per">/mo</span></div>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>30 posts + reels</strong> per month</span></li>
+          <li><span class="ck">✓</span><span><strong>6 reels/month</strong></span></li>
+          <li><span class="ck">✓</span><span>4 Meta + 2 Google campaigns</span></li>
+          <li><span class="ck">✓</span><span>Advanced SEO + link building</span></li>
+          <li><span class="ck">✓</span><span>Full WhatsApp automation</span></li>
+          <li><span class="ck">✓</span><span>Custom AI chatbot</span></li>
+          <li><span class="ck">✓</span><span>Major website updates</span></li>
+          <li><span class="ck">✓</span><span>Advanced lead generation</span></li>
           <li><span class="ck">✓</span><span>Dedicated account manager</span></li>
-          <li><span class="ck">✓</span><span>Priority WhatsApp &amp; call support</span></li>
+          <li><span class="ck">✓</span><span>Full analytics dashboard</span></li>
         </ul>
-      </div>
-      <div class="pc-foot">
-        <a href="contact.html" class="btn-plan">Get Started</a>
-      </div>
-    </div>
-
-    <!-- ENTERPRISE -->
-    <div class="pc">
-      <div class="pc-head">
-        <div class="pc-tier">Established Brand</div>
-        <div class="pc-name">ENTERPRISE</div>
-        <div class="pc-tagline">Full 360° marketing for serious brands</div>
-        <div class="pc-price">
-          <span class="curr">₹</span>
-          <span class="amount">39,999</span>
-          <span class="period">/ month</span>
+        <div class="plan-foot">
+          <button class="add-cart-btn" onclick="addToCart('retainer-pro','Monthly Retainer','Pro Brand ₹35,000/mo',35000,'🚀',this)">🛒 ADD TO CART</button>
         </div>
-        <div class="pc-saving">Save ₹18,000+ vs individual services</div>
       </div>
-      <div class="pc-body">
-        <div class="pc-section-label">Social Media</div>
-        <ul class="pc-features">
-          <li class="highlight"><span class="ck">✓</span><span>Social media management (3 platforms)</span></li>
-          <li><span class="ck">✓</span><span>Unlimited posts per month</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>8 reels + 2 brand videos per month</span></li>
-          <li><span class="ck">✓</span><span>Story, reel &amp; ad creative strategy</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>2 professional photo shoots per month</span></li>
+
+      <!-- ENTERPRISE -->
+      <div class="plan-card" style="grid-column:1/-1;max-width:400px;margin:0 auto;">
+        <div class="plan-badge" style="background:linear-gradient(135deg,#2452A0,#FFE127);color:#000;">👑 ENTERPRISE</div>
+        <div class="plan-head">
+          <div class="plan-tier">Large Companies</div>
+          <div class="plan-name">ENTERPRISE</div>
+          <div class="plan-tagline">Full agency dedicated to your brand</div>
+          <div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">75,000</span><span class="plan-per">/mo</span></div>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>50 posts + videos</strong>/month</span></li>
+          <li><span class="ck">✓</span><span><strong>12 reels/month</strong></span></li>
+          <li><span class="ck">✓</span><span>Unlimited Meta + Google campaigns</span></li>
+          <li><span class="ck">✓</span><span>Full SEO + link building</span></li>
+          <li><span class="ck">✓</span><span>Custom AI workflow automation</span></li>
+          <li><span class="ck">✓</span><span>Full AI suite (chatbot, content gen, search)</span></li>
+          <li><span class="ck">✓</span><span>Dedicated dev time (website/app)</span></li>
+          <li><span class="ck">✓</span><span>AI-powered lead generation</span></li>
+          <li><span class="ck">✓</span><span>Dashboard + weekly strategy call</span></li>
         </ul>
-        <div class="pc-section-label">SEO &amp; Web</div>
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>Google My Business management</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>SEO – 3 keywords (aggressive)</span></li>
-          <li><span class="ck">✓</span><span>Full website maintenance &amp; updates</span></li>
-        </ul>
-        <div class="pc-section-label">Reporting &amp; Strategy</div>
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>Weekly performance report</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>Monthly strategy call with agency head</span></li>
-          <li><span class="ck">✓</span><span>24/7 priority support</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>Quarterly competitor analysis</span></li>
-        </ul>
-      </div>
-      <div class="pc-foot">
-        <a href="contact.html" class="btn-plan">Get Started</a>
+        <div class="plan-foot">
+          <button class="add-cart-btn" onclick="addToCart('retainer-enterprise','Monthly Retainer','Enterprise ₹75,000/mo',75000,'👑',this)">🛒 ADD TO CART</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- CONTENT CREATION PLANS -->
-<div class="plans-section" id="tab-content" style="display:none;">
-  <div class="plans-grid">
-    <div class="pc">
-      <div class="pc-head">
-        <div class="pc-tier">Small Business</div>
-        <div class="pc-name">CONTENT BASIC</div>
-        <div class="pc-tagline">Occasional shoots &amp; reels</div>
-        <div class="pc-price">
-          <span class="curr">₹</span><span class="amount">7,499</span><span class="period">/ month</span>
+  <!-- ══════════════════════════════════
+       SECTION 2: INSTAGRAM / FACEBOOK PLANS
+       ══════════════════════════════════ -->
+  <div class="sec-block">
+    <div class="cat-tag">Section 2</div>
+    <h2 class="cat-title">Instagram & Facebook Management</h2>
+    <p class="cat-desc">Dedicated social media plans for businesses that want consistent, branded presence on Instagram and Facebook. Posts, reels, stories, captions, hashtags — fully managed.</p>
+
+    <div id="socialTabGroup" style="margin-top:28px;">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('socialTabGroup','tab-ig',this)">📸 Instagram</button>
+        <button class="tab-btn" onclick="switchTab('socialTabGroup','tab-fb',this)">👍 Facebook</button>
+        <button class="tab-btn" onclick="switchTab('socialTabGroup','tab-combo',this)">🔗 Both Combined</button>
+      </div>
+
+      <div class="tab-content active" id="tab-ig">
+        <div class="plans-grid" style="margin-top:20px;">
+          <div class="plan-card">
+            <div class="plan-head"><div class="plan-tier">Small Business</div><div class="plan-name">INSTAGRAM BASIC</div><div class="plan-tagline">Build presence from scratch</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">6,000</span><span class="plan-per">/mo</span></div></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><span class="ck">✓</span><span>12 posts/month (4/week)</span></li>
+              <li><span class="ck">✓</span><span>2 reels/month</span></li>
+              <li><span class="ck">✓</span><span>Caption + hashtag writing</span></li>
+              <li><span class="ck">✓</span><span>Stories strategy</span></li>
+              <li><span class="ck">✓</span><span>Profile bio + highlight covers</span></li>
+              <li><span class="ck">✓</span><span>Monthly reach report</span></li>
+            </ul>
+            <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('ig-basic','Instagram Management','Basic ₹6,000/mo',6000,'📸',this)">🛒 ADD TO CART</button></div>
+          </div>
+          <div class="plan-card featured">
+            <div class="plan-badge">⭐ POPULAR</div>
+            <div class="plan-head"><div class="plan-tier">Growing Business</div><div class="plan-name">INSTAGRAM PRO</div><div class="plan-tagline">Consistent growth + reels engine</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">12,000</span><span class="plan-per">/mo</span></div></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><span class="ck">✓</span><span><strong>20 posts/month</strong></span></li>
+              <li><span class="ck">✓</span><span><strong>4 reels/month</strong></span></li>
+              <li><span class="ck">✓</span><span>Caption, hashtag + story strategy</span></li>
+              <li><span class="ck">✓</span><span>Comment & DM management</span></li>
+              <li><span class="ck">✓</span><span>1 Meta ad campaign/month</span></li>
+              <li><span class="ck">✓</span><span>Competitor analysis</span></li>
+              <li><span class="ck">✓</span><span>Bi-weekly analytics report</span></li>
+            </ul>
+            <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('ig-pro','Instagram Management','Pro ₹12,000/mo',12000,'📸',this)">🛒 ADD TO CART</button></div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-head"><div class="plan-tier">Established Brand</div><div class="plan-name">INSTAGRAM BRAND</div><div class="plan-tagline">Full brand presence domination</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">20,000</span><span class="plan-per">/mo</span></div></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><span class="ck">✓</span><span><strong>30 posts/month</strong></span></li>
+              <li><span class="ck">✓</span><span><strong>6 reels/month</strong></span></li>
+              <li><span class="ck">✓</span><span>Full story + reel strategy</span></li>
+              <li><span class="ck">✓</span><span>DM management + CRM integration</span></li>
+              <li><span class="ck">✓</span><span>2 Meta ad campaigns</span></li>
+              <li><span class="ck">✓</span><span>Influencer outreach plan</span></li>
+              <li><span class="ck">✓</span><span>Weekly reports + growth strategy call</span></li>
+            </ul>
+            <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('ig-brand','Instagram Management','Brand ₹20,000/mo',20000,'📸',this)">🛒 ADD TO CART</button></div>
+          </div>
         </div>
       </div>
-      <div class="pc-body">
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>1 photo shoot per month (₹3,850 value)</span></li>
-          <li><span class="ck">✓</span><span>2 reels edited (under 1 min each)</span></li>
-          <li><span class="ck">✓</span><span>5 static post designs</span></li>
-          <li><span class="ck">✓</span><span>Raw files included</span></li>
-          <li><span class="xk">✗</span><span style="opacity:.5">Long-form video edit</span></li>
-        </ul>
-      </div>
-      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
-    </div>
-    <div class="pc popular">
-      <div class="pc-badge">⭐ MOST POPULAR</div>
-      <div class="pc-head">
-        <div class="pc-tier">Growing Business</div>
-        <div class="pc-name">CONTENT PRO</div>
-        <div class="pc-tagline">Regular content machine</div>
-        <div class="pc-price">
-          <span class="curr">₹</span><span class="amount">14,999</span><span class="period">/ month</span>
+
+      <div class="tab-content" id="tab-fb">
+        <div class="plans-grid" style="margin-top:20px;">
+          <div class="plan-card">
+            <div class="plan-head"><div class="plan-tier">Small Business</div><div class="plan-name">FACEBOOK BASIC</div><div class="plan-tagline">Local community growth</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">5,000</span><span class="plan-per">/mo</span></div></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><span class="ck">✓</span><span>12 posts/month</span></li>
+              <li><span class="ck">✓</span><span>Page setup & optimisation</span></li>
+              <li><span class="ck">✓</span><span>Caption + hashtag writing</span></li>
+              <li><span class="ck">✓</span><span>1 ad campaign (boosted post)</span></li>
+              <li><span class="ck">✓</span><span>Monthly report</span></li>
+            </ul>
+            <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('fb-basic','Facebook Management','Basic ₹5,000/mo',5000,'👍',this)">🛒 ADD TO CART</button></div>
+          </div>
+          <div class="plan-card featured">
+            <div class="plan-badge">⭐ POPULAR</div>
+            <div class="plan-head"><div class="plan-tier">Growing Business</div><div class="plan-name">FACEBOOK PRO</div><div class="plan-tagline">Ads + organic growth combo</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">10,000</span><span class="plan-per">/mo</span></div></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><span class="ck">✓</span><span><strong>20 posts/month</strong></span></li>
+              <li><span class="ck">✓</span><span>2 ad campaigns</span></li>
+              <li><span class="ck">✓</span><span>Retargeting pixel setup</span></li>
+              <li><span class="ck">✓</span><span>Lookalike audience targeting</span></li>
+              <li><span class="ck">✓</span><span>Community engagement management</span></li>
+              <li><span class="ck">✓</span><span>Detailed bi-weekly report</span></li>
+            </ul>
+            <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('fb-pro','Facebook Management','Pro ₹10,000/mo',10000,'👍',this)">🛒 ADD TO CART</button></div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-head"><div class="plan-tier">Established Brand</div><div class="plan-name">FACEBOOK BRAND</div><div class="plan-tagline">Full-funnel Facebook dominance</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">18,000</span><span class="plan-per">/mo</span></div></div>
+            <div class="plan-divider"></div>
+            <ul class="plan-features">
+              <li><span class="ck">✓</span><span><strong>30 posts/month</strong></span></li>
+              <li><span class="ck">✓</span><span>4 ad campaigns unlimited budget</span></li>
+              <li><span class="ck">✓</span><span>Full funnel strategy (awareness → conversion)</span></li>
+              <li><span class="ck">✓</span><span>Lead form ads + CRM integration</span></li>
+              <li><span class="ck">✓</span><span>Weekly reports + strategy call</span></li>
+            </ul>
+            <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('fb-brand','Facebook Management','Brand ₹18,000/mo',18000,'👍',this)">🛒 ADD TO CART</button></div>
+          </div>
         </div>
-        <div class="pc-saving">Save ₹4,500 vs individual</div>
       </div>
-      <div class="pc-body">
-        <ul class="pc-features">
-          <li class="highlight"><span class="ck">✓</span><span>2 photo shoots per month</span></li>
-          <li><span class="ck">✓</span><span>4 reels edited (under 1 min)</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>1 brand video edit (3–5 min)</span></li>
-          <li><span class="ck">✓</span><span>10 static post designs</span></li>
-          <li><span class="ck">✓</span><span>Thumbnail design for YouTube</span></li>
-          <li><span class="ck">✓</span><span>Raw + edited files</span></li>
-        </ul>
-      </div>
-      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
-    </div>
-    <div class="pc">
-      <div class="pc-head">
-        <div class="pc-tier">Established Brand</div>
-        <div class="pc-name">CONTENT STUDIO</div>
-        <div class="pc-tagline">Agency-grade content every week</div>
-        <div class="pc-price">
-          <span class="curr">₹</span><span class="amount">27,999</span><span class="period">/ month</span>
+
+      <div class="tab-content" id="tab-combo">
+        <div class="plans-grid" style="margin-top:20px;">
+          <div class="plan-card"><div class="plan-head"><div class="plan-tier">Small</div><div class="plan-name">COMBO BASIC</div><div class="plan-tagline">IG + FB together, save 15%</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">9,500</span><span class="plan-per">/mo</span></div><div class="plan-saving">Save vs buying separately</div></div><div class="plan-divider"></div><ul class="plan-features"><li><span class="ck">✓</span><span>12 posts on each platform</span></li><li><span class="ck">✓</span><span>2 reels (cross-posted)</span></li><li><span class="ck">✓</span><span>1 ad campaign each</span></li><li><span class="ck">✓</span><span>Monthly combined report</span></li></ul><div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('combo-basic','IG+FB Combo','Basic ₹9,500/mo',9500,'🔗',this)">🛒 ADD TO CART</button></div></div>
+          <div class="plan-card featured"><div class="plan-badge">⭐ BEST VALUE</div><div class="plan-head"><div class="plan-tier">Medium</div><div class="plan-name">COMBO PRO</div><div class="plan-tagline">Full IG + FB — best ROI</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">19,000</span><span class="plan-per">/mo</span></div><div class="plan-saving">Save ₹3,000 vs separate</div></div><div class="plan-divider"></div><ul class="plan-features"><li><span class="ck">✓</span><span><strong>20 posts</strong> on each platform</span></li><li><span class="ck">✓</span><span><strong>4 reels/month</strong></span></li><li><span class="ck">✓</span><span>2 campaigns each platform</span></li><li><span class="ck">✓</span><span>Comment + DM management (both)</span></li><li><span class="ck">✓</span><span>Bi-weekly combined analytics</span></li></ul><div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('combo-pro','IG+FB Combo','Pro ₹19,000/mo',19000,'🔗',this)">🛒 ADD TO CART</button></div></div>
+          <div class="plan-card"><div class="plan-head"><div class="plan-tier">Large</div><div class="plan-name">COMBO BRAND</div><div class="plan-tagline">Total social media dominance</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">33,000</span><span class="plan-per">/mo</span></div><div class="plan-saving">Save ₹5,000 vs separate</div></div><div class="plan-divider"></div><ul class="plan-features"><li><span class="ck">✓</span><span><strong>30 posts each</strong> platform</span></li><li><span class="ck">✓</span><span><strong>6 reels/month</strong></span></li><li><span class="ck">✓</span><span>4 campaigns each + cross-retargeting</span></li><li><span class="ck">✓</span><span>Full community management</span></li><li><span class="ck">✓</span><span>Weekly reports + strategy call</span></li></ul><div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('combo-brand','IG+FB Combo','Brand ₹33,000/mo',33000,'🔗',this)">🛒 ADD TO CART</button></div></div>
         </div>
-        <div class="pc-saving">Save ₹10,000+ vs individual</div>
       </div>
-      <div class="pc-body">
-        <ul class="pc-features">
-          <li class="highlight"><span class="ck">✓</span><span>4 photo shoots per month</span></li>
-          <li><span class="ck">✓</span><span>8 reels edited (under 1 min)</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>2 brand videos (3–5 min each)</span></li>
-          <li><span class="ck">✓</span><span>Unlimited static designs</span></li>
-          <li><span class="ck">✓</span><span>YouTube thumbnail batch</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>Dedicated content strategist</span></li>
-          <li><span class="ck">✓</span><span>Content calendar planning</span></li>
-        </ul>
-      </div>
-      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
     </div>
   </div>
-</div>
 
-<!-- COMPLETE 360 PLANS -->
-<div class="plans-section" id="tab-complete" style="display:none;">
-  <div class="plans-grid">
-    <div class="pc">
-      <div class="pc-head">
-        <div class="pc-tier">Small Business · 360°</div>
-        <div class="pc-name">360° BASIC</div>
-        <div class="pc-tagline">End-to-end for small teams</div>
-        <div class="pc-price">
-          <span class="curr">₹</span><span class="amount">17,499</span><span class="period">/ month</span>
-        </div>
-        <div class="pc-saving">Save ₹5,000 vs individual</div>
-      </div>
-      <div class="pc-body">
-        <ul class="pc-features">
-          <li><span class="ck">✓</span><span>Social media management (1 platform)</span></li>
-          <li><span class="ck">✓</span><span>1 photo shoot / month</span></li>
-          <li><span class="ck">✓</span><span>2 reels / month</span></li>
-          <li><span class="ck">✓</span><span>Google My Business</span></li>
-          <li><span class="ck">✓</span><span>SEO – 1 keyword</span></li>
-          <li><span class="ck">✓</span><span>Basic outdoor design (1 creative)</span></li>
+  <!-- ══════════════════════════════════
+       SECTION 3: YOUTUBE VIDEO MAKING
+       ══════════════════════════════════ -->
+  <div class="sec-block">
+    <div class="cat-tag">Section 3</div>
+    <h2 class="cat-title">YouTube Video Making Plans</h2>
+    <p class="cat-desc">Full YouTube channel management and video production — scripting, shooting coordination, editing, thumbnails, SEO and posting. Three tiers for different output needs.</p>
+    <div class="plans-grid" style="margin-top:28px;">
+      <div class="plan-card">
+        <div class="plan-head"><div class="plan-tier">Beginner Channel</div><div class="plan-name">YOUTUBE STARTER</div><div class="plan-tagline">Launch and grow your channel</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">8,000</span><span class="plan-per">/mo</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>4 videos/month</strong> edited (up to 10 min)</span></li>
+          <li><span class="ck">✓</span><span>4 custom thumbnails</span></li>
+          <li><span class="ck">✓</span><span>Title, description & tag SEO</span></li>
+          <li><span class="ck">✓</span><span>Channel art + banner design</span></li>
+          <li><span class="ck">✓</span><span>Upload scheduling</span></li>
+          <li><span class="ck">✓</span><span>Monthly analytics report</span></li>
         </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('yt-starter','YouTube Plan','Starter ₹8,000/mo',8000,'▶️',this)">🛒 ADD TO CART</button></div>
       </div>
-      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
-    </div>
-    <div class="pc popular">
-      <div class="pc-badge">⭐ MOST POPULAR</div>
-      <div class="pc-head">
-        <div class="pc-tier">Medium Business · 360°</div>
-        <div class="pc-name">360° GROWTH</div>
-        <div class="pc-tagline">The complete growth engine</div>
-        <div class="pc-price">
-          <span class="curr">₹</span><span class="amount">34,999</span><span class="period">/ month</span>
-        </div>
-        <div class="pc-saving">Save ₹15,000+ vs individual</div>
-      </div>
-      <div class="pc-body">
-        <ul class="pc-features">
-          <li class="highlight"><span class="ck">✓</span><span>Social media (2 platforms)</span></li>
-          <li><span class="ck">✓</span><span>2 photo shoots / month</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>4 reels + 1 brand video</span></li>
-          <li><span class="ck">✓</span><span>Google My Business + local SEO</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>SEO – 2 keywords</span></li>
-          <li><span class="ck">✓</span><span>1 outdoor creative design</span></li>
-          <li><span class="ck">✓</span><span>Website maintenance</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>Bi-weekly strategy reports</span></li>
+      <div class="plan-card featured">
+        <div class="plan-badge">⭐ POPULAR</div>
+        <div class="plan-head"><div class="plan-tier">Growing Channel</div><div class="plan-name">YOUTUBE PRO</div><div class="plan-tagline">Consistent uploads + subscriber growth</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">16,000</span><span class="plan-per">/mo</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>8 videos/month</strong> edited</span></li>
+          <li><span class="ck">✓</span><span><strong>4 YouTube Shorts</strong>/month</span></li>
+          <li><span class="ck">✓</span><span>8 custom thumbnails (A/B tested)</span></li>
+          <li><span class="ck">✓</span><span>Script writing / outline</span></li>
+          <li><span class="ck">✓</span><span>Full YouTube SEO optimization</span></li>
+          <li><span class="ck">✓</span><span>End screen + card setup</span></li>
+          <li><span class="ck">✓</span><span>Competitor channel analysis</span></li>
+          <li><span class="ck">✓</span><span>Bi-weekly growth report</span></li>
         </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('yt-pro','YouTube Plan','Pro ₹16,000/mo',16000,'▶️',this)">🛒 ADD TO CART</button></div>
       </div>
-      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
-    </div>
-    <div class="pc">
-      <div class="pc-head">
-        <div class="pc-tier">Large Business · 360°</div>
-        <div class="pc-name">360° ENTERPRISE</div>
-        <div class="pc-tagline">Full domination — digital + ground</div>
-        <div class="pc-price">
-          <span class="curr">₹</span><span class="amount">59,999</span><span class="period">/ month</span>
-        </div>
-        <div class="pc-saving">Save ₹30,000+ vs individual</div>
-      </div>
-      <div class="pc-body">
-        <ul class="pc-features">
-          <li class="highlight"><span class="ck">✓</span><span>Social media (3+ platforms)</span></li>
-          <li><span class="ck">✓</span><span>4 photo shoots / month</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>8 reels + 2 brand videos</span></li>
-          <li><span class="ck">✓</span><span>Full SEO — 3 keywords (aggressive)</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>Outdoor ad design &amp; execution support</span></li>
-          <li><span class="ck">✓</span><span>Paid ads management (Meta/Google)</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>Website design &amp; maintenance</span></li>
-          <li><span class="ck">✓</span><span>Weekly reports + monthly strategy call</span></li>
-          <li class="highlight"><span class="ck">✓</span><span>Dedicated team of 3 specialists</span></li>
+      <div class="plan-card">
+        <div class="plan-head"><div class="plan-tier">Brand / Business Channel</div><div class="plan-name">YOUTUBE BRAND</div><div class="plan-tagline">Full production + channel domination</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">28,000</span><span class="plan-per">/mo</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>12 videos/month</strong> full production</span></li>
+          <li><span class="ck">✓</span><span><strong>8 YouTube Shorts</strong>/month</span></li>
+          <li><span class="ck">✓</span><span>Full scripting + shoot coordination</span></li>
+          <li><span class="ck">✓</span><span>12 custom thumbnails + motion intros</span></li>
+          <li><span class="ck">✓</span><span>YouTube ad campaign management</span></li>
+          <li><span class="ck">✓</span><span>Brand sponsorship pitch kit</span></li>
+          <li><span class="ck">✓</span><span>Weekly analytics + monetisation strategy</span></li>
         </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('yt-brand','YouTube Plan','Brand ₹28,000/mo',28000,'▶️',this)">🛒 ADD TO CART</button></div>
       </div>
-      <div class="pc-foot"><a href="contact.html" class="btn-plan">Get Started</a></div>
     </div>
   </div>
-</div>
 
-<!-- INDIVIDUAL SERVICE RATES -->
-<div class="service-pricing">
-  <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Pay Per Service</div>
-  <h2 class="sp-title">Individual Service Rates</h2>
-  <p style="font-size:14px;color:var(--muted-text);max-width:520px;line-height:1.7;">Don't need a full plan? Order individual services. These rates are built into all plans — so plans always give you better value.</p>
-  <div class="sp-grid">
-    <div class="sp-item">
-      <div class="sp-icon">📸</div>
-      <div class="sp-name">Photo Shoot</div>
-      <div class="sp-desc">Professional brand or product photography session (half day).</div>
-      <div class="sp-price-row">
-        <span class="sp-price-label">Per shoot</span>
-        <span class="sp-price-val">₹3,850</span>
+  <!-- ══════════════════════════════════
+       SECTION 4: SHOOT PLANS
+       ══════════════════════════════════ -->
+  <div class="sec-block">
+    <div class="cat-tag">Section 4</div>
+    <h2 class="cat-title">Photography Shoot Plans</h2>
+    <p class="cat-desc">Professional brand and product photography shot in Kanpur. All shoots include editing and same-week digital delivery.</p>
+    <div class="plans-grid" style="margin-top:28px;">
+      <div class="plan-card">
+        <div class="plan-head"><div class="plan-tier">Basic Need</div><div class="plan-name">SHOOT BASIC</div><div class="plan-tagline">One-time product or brand shoot</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">3,500</span><span class="plan-per">/shoot</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span>2-hour shoot session</span></li>
+          <li><span class="ck">✓</span><span><strong>20+ edited images</strong> delivered</span></li>
+          <li><span class="ck">✓</span><span>Basic background & props</span></li>
+          <li><span class="ck">✓</span><span>PNG + JPG formats</span></li>
+          <li><span class="ck">✓</span><span>Delivery within 3 days</span></li>
+        </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('shoot-basic','Photography Shoot','Basic ₹3,500/shoot',3500,'📸',this)">🛒 ADD TO CART</button></div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">⭐ BEST SELLER</div>
+        <div class="plan-head"><div class="plan-tier">Standard Brand Shoot</div><div class="plan-name">SHOOT PRO</div><div class="plan-tagline">Monthly brand photography package</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">7,000</span><span class="plan-per">/month</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>2 shoots/month</strong> (half-day each)</span></li>
+          <li><span class="ck">✓</span><span><strong>50+ edited images</strong> total</span></li>
+          <li><span class="ck">✓</span><span>Background, prop & lighting setup</span></li>
+          <li><span class="ck">✓</span><span>Raw + edited files both</span></li>
+          <li><span class="ck">✓</span><span>Delivery within 48 hours</span></li>
+          <li><span class="ck">✓</span><span>Social-ready crops (square, portrait)</span></li>
+        </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('shoot-pro','Photography Shoot','Pro ₹7,000/mo',7000,'📸',this)">🛒 ADD TO CART</button></div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-head"><div class="plan-tier">Full Brand Coverage</div><div class="plan-name">SHOOT STUDIO</div><div class="plan-tagline">Weekly content shoot + production</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">14,000</span><span class="plan-per">/month</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span><strong>4 shoots/month</strong> (weekly)</span></li>
+          <li><span class="ck">✓</span><span><strong>100+ edited images</strong> total</span></li>
+          <li><span class="ck">✓</span><span>Full styling, prop & set coordination</span></li>
+          <li><span class="ck">✓</span><span>Video clips for reels (BTS)</span></li>
+          <li><span class="ck">✓</span><span>Raw + HQ edited files</span></li>
+          <li><span class="ck">✓</span><span>Priority 24-hour delivery</span></li>
+          <li><span class="ck">✓</span><span>Dedicated content planner</span></li>
+        </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('shoot-studio','Photography Shoot','Studio ₹14,000/mo',14000,'📸',this)">🛒 ADD TO CART</button></div>
       </div>
     </div>
-    <div class="sp-item">
-      <div class="sp-icon">🎬</div>
-      <div class="sp-name">Reel Edit (under 1 min)</div>
-      <div class="sp-desc">Short-form video editing — transitions, music, text overlays.</div>
-      <div class="sp-price-row">
-        <span class="sp-price-label">Per reel</span>
-        <span class="sp-price-val">₹549</span>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 5: BRANDING PLANS
+       ══════════════════════════════════ -->
+  <div class="sec-block">
+    <div class="cat-tag">Section 5</div>
+    <h2 class="cat-title">Branding & Small Activities</h2>
+    <p class="cat-desc">Logo, brand identity, outdoor signs, events, visiting cards — the building blocks that make your business look professional and trustworthy.</p>
+    <div class="plans-grid" style="margin-top:28px;">
+      <div class="plan-card">
+        <div class="plan-head"><div class="plan-tier">Startup</div><div class="plan-name">BRAND STARTER</div><div class="plan-tagline">Logo + basic identity kit</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">8,500</span><span class="plan-per">one-time</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span>Custom logo (3 concepts, 2 revisions)</span></li>
+          <li><span class="ck">✓</span><span>Colour palette + typography guide</span></li>
+          <li><span class="ck">✓</span><span>Letterhead + business card design</span></li>
+          <li><span class="ck">✓</span><span>PNG / SVG / PDF formats</span></li>
+          <li><span class="ck">✓</span><span>Visiting card printing (250 pcs) — ₹1,000 extra</span></li>
+        </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('brand-starter','Branding Package','Starter ₹8,500',8500,'🎨',this)">🛒 ADD TO CART</button></div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">⭐ RECOMMENDED</div>
+        <div class="plan-head"><div class="plan-tier">Growing Business</div><div class="plan-name">BRAND PRO</div><div class="plan-tagline">Full identity + social kit + outdoor</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">18,000</span><span class="plan-per">one-time</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span>Everything in Starter</span></li>
+          <li><span class="ck">✓</span><span>10 Instagram / Facebook branded templates</span></li>
+          <li><span class="ck">✓</span><span>Shop signboard design (flex/LED)</span></li>
+          <li><span class="ck">✓</span><span>1 hoarding design (up to 10x15 ft)</span></li>
+          <li><span class="ck">✓</span><span>WhatsApp catalogue setup</span></li>
+          <li><span class="ck">✓</span><span>Google My Business setup + optimisation</span></li>
+        </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('brand-pro','Branding Package','Pro ₹18,000',18000,'🎨',this)">🛒 ADD TO CART</button></div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-head"><div class="plan-tier">Established Brand</div><div class="plan-name">BRAND 360°</div><div class="plan-tagline">Complete brand takeover</div><div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">35,000</span><span class="plan-per">one-time</span></div></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span><span>Everything in Pro</span></li>
+          <li><span class="ck">✓</span><span>Vehicle branding design (2 vehicles)</span></li>
+          <li><span class="ck">✓</span><span>Event branding kit (standees, backdrop, banners)</span></li>
+          <li><span class="ck">✓</span><span>Brand guidelines document (PDF)</span></li>
+          <li><span class="ck">✓</span><span>Animated logo reveal (for videos)</span></li>
+          <li><span class="ck">✓</span><span>Brand launch strategy session</span></li>
+          <li><span class="ck">✓</span><span>Newspaper ad design (1 edition)</span></li>
+        </ul>
+        <div class="plan-foot"><button class="add-cart-btn" onclick="addToCart('brand-360','Branding Package','360° ₹35,000',35000,'🎨',this)">🛒 ADD TO CART</button></div>
       </div>
     </div>
-    <div class="sp-item">
-      <div class="sp-icon">🎥</div>
-      <div class="sp-name">Brand Video Edit (3–5 min)</div>
-      <div class="sp-desc">Long-form brand storytelling video with full colour grade &amp; music.</div>
-      <div class="sp-price-row">
-        <span class="sp-price-label">Per video</span>
-        <span class="sp-price-val">₹1,099</span>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 6: INDIVIDUAL RATES
+       ══════════════════════════════════ -->
+  <div class="sec-block">
+    <div class="cat-tag">Section 6</div>
+    <h2 class="cat-title">Individual Service Rates</h2>
+    <p class="cat-desc">Need just one thing? Order individual services below. Plans always save you more, but we're happy to do one-offs too.</p>
+
+    <div id="rateTabGroup" style="margin-top:24px;">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('rateTabGroup','rate-digital',this)">Digital</button>
+        <button class="tab-btn" onclick="switchTab('rateTabGroup','rate-web',this)">Website</button>
+        <button class="tab-btn" onclick="switchTab('rateTabGroup','rate-ai',this)">AI Services</button>
+        <button class="tab-btn" onclick="switchTab('rateTabGroup','rate-traditional',this)">Traditional</button>
+        <button class="tab-btn" onclick="switchTab('rateTabGroup','rate-consulting',this)">Consulting</button>
+        <button class="tab-btn" onclick="switchTab('rateTabGroup','rate-hosting',this)">Hosting</button>
+      </div>
+
+      <div class="tab-content active" id="rate-digital">
+        <div class="rate-grid">
+          <div class="rate-item"><div class="rate-icon">🖋️</div><div class="rate-name">Logo Design</div><div class="rate-desc">3 concepts, 2 revisions, PNG/SVG/PDF</div><div class="rate-price">₹3,500</div><button class="rate-add-btn" onclick="addToCart('logo','Logo Design','One-time',3500,'🖋️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎨</div><div class="rate-name">Brand Identity Kit</div><div class="rate-desc">Logo + palette + fonts + letterhead + card</div><div class="rate-price">₹8,500</div><button class="rate-add-btn" onclick="addToCart('brand-kit','Brand Identity Kit','One-time',8500,'🎨',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📐</div><div class="rate-name">Social Media Kit</div><div class="rate-desc">10 branded templates (IG/FB/LinkedIn)</div><div class="rate-price">₹5,000</div><button class="rate-add-btn" onclick="addToCart('sm-kit','Social Media Kit','One-time',5000,'📐',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">✍️</div><div class="rate-name">Content Writing</div><div class="rate-desc">SEO-optimised professional copy</div><div class="rate-price">₹500/page</div><button class="rate-add-btn" onclick="addToCart('content-write','Content Writing','Per page',500,'✍️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📣</div><div class="rate-name">Google Ads Setup</div><div class="rate-desc">Campaign, copy, audience, conversion tracking</div><div class="rate-price">₹7,000</div><button class="rate-add-btn" onclick="addToCart('google-ads','Google Ads Setup','One-time',7000,'📣',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎯</div><div class="rate-name">Meta Ads Setup</div><div class="rate-desc">FB/Insta campaign, retargeting, lookalike</div><div class="rate-price">₹5,000</div><button class="rate-add-btn" onclick="addToCart('meta-ads','Meta Ads Setup','One-time',5000,'🎯',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">💬</div><div class="rate-name">WhatsApp Chat Button</div><div class="rate-desc">Live WA chat on website + auto-greeting</div><div class="rate-price">₹1,500</div><button class="rate-add-btn" onclick="addToCart('wa-btn','WhatsApp Chat Button','One-time',1500,'💬',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎬</div><div class="rate-name">Video Ad Production</div><div class="rate-desc">30-second promo video for social/reels</div><div class="rate-price">₹8,000</div><button class="rate-add-btn" onclick="addToCart('video-ad','Video Ad Production','One-time',8000,'🎬',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">⚡</div><div class="rate-name">Speed Optimisation</div><div class="rate-desc">Image compression, caching, CDN, Core Web Vitals</div><div class="rate-price">₹4,000</div><button class="rate-add-btn" onclick="addToCart('speed-opt','Speed Optimisation','One-time',4000,'⚡',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🔧</div><div class="rate-name">Annual Maintenance</div><div class="rate-desc">Security, updates, backups, uptime monitoring</div><div class="rate-price">₹6,000/yr</div><button class="rate-add-btn" onclick="addToCart('maintenance','Annual Maintenance','Per year',6000,'🔧',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🌐</div><div class="rate-name">Multilingual Website</div><div class="rate-desc">Hindi + English or any 2 languages</div><div class="rate-price">₹12,000</div><button class="rate-add-btn" onclick="addToCart('multilingual','Multilingual Website','One-time',12000,'🌐',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📄</div><div class="rate-name">Extra Pages</div><div class="rate-desc">Additional pages beyond plan limit</div><div class="rate-price">₹1,000/page</div><button class="rate-add-btn" onclick="addToCart('extra-page','Extra Pages','Per page',1000,'📄',this)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="rate-web">
+        <div class="rate-grid">
+          <div class="rate-item"><div class="rate-icon">🖥️</div><div class="rate-name">Basic Website</div><div class="rate-desc">Up to 5 pages, template design, basic SEO, 2-week delivery</div><div class="rate-price">₹15,000</div><button class="rate-add-btn" onclick="addToCart('web-basic','Website Design','Basic',15000,'🖥️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">💼</div><div class="rate-name">Business Website</div><div class="rate-desc">Up to 15 pages, custom UI/UX, WordPress CMS, 4-week delivery</div><div class="rate-price">₹35,000</div><button class="rate-add-btn" onclick="addToCart('web-business','Website Design','Business',35000,'💼',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🛒</div><div class="rate-name">E-Commerce Website</div><div class="rate-desc">Up to 50 products, WooCommerce, custom UI/UX, 6-week delivery</div><div class="rate-price">₹65,000</div><button class="rate-add-btn" onclick="addToCart('web-ecom','Website Design','E-Commerce',65000,'🛒',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">✨</div><div class="rate-name">AI Animated Website (Starter)</div><div class="rate-desc">GSAP animations, 3D, GPT chatbot, premium motion UI like Apple.com</div><div class="rate-price">₹1,85,000</div><button class="rate-add-btn" onclick="addToCart('web-ai-s','AI Animated Website','Starter',185000,'✨',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🌟</div><div class="rate-name">AI Animated Website (Pro)</div><div class="rate-desc">Everything in Starter + AI content generator + AI search + premium hosting</div><div class="rate-price">₹2,75,000</div><button class="rate-add-btn" onclick="addToCart('web-ai-p','AI Animated Website','Pro',275000,'🌟',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🏆</div><div class="rate-name">AI Animated Website (Enterprise)</div><div class="rate-desc">Full AI suite, 3D product viewer, AWS/Vercel hosting, WAF security, SLA</div><div class="rate-price">₹4,50,000+</div><button class="rate-add-btn" onclick="addToCart('web-ai-e','AI Animated Website','Enterprise',450000,'🏆',this)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="rate-ai">
+        <div class="rate-grid">
+          <div class="rate-item"><div class="rate-icon">🤖</div><div class="rate-name">AI Chatbot Integration</div><div class="rate-desc">GPT-powered, trained on your business, web + WhatsApp</div><div class="rate-price">₹18,000</div><button class="rate-add-btn" onclick="addToCart('ai-chatbot','AI Chatbot','One-time',18000,'🤖',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📲</div><div class="rate-name">WhatsApp Automation Suite</div><div class="rate-desc">Auto-replies, lead capture, broadcasts, CRM integration</div><div class="rate-price">₹14,000</div><button class="rate-add-btn" onclick="addToCart('wa-auto','WhatsApp Automation','One-time',14000,'📲',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">✍️</div><div class="rate-name">AI Content Generator</div><div class="rate-desc">Auto-generates blogs, product descriptions, social posts</div><div class="rate-price">₹12,000</div><button class="rate-add-btn" onclick="addToCart('ai-content','AI Content Generator','One-time',12000,'✍️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎯</div><div class="rate-name">AI Lead Generation System</div><div class="rate-desc">AI lead form + follow-up sequence + CRM pipeline</div><div class="rate-price">₹20,000</div><button class="rate-add-btn" onclick="addToCart('ai-leads','AI Lead Gen System','One-time',20000,'🎯',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🔍</div><div class="rate-name">AI Search & Recommendations</div><div class="rate-desc">Smart NLP search + personalised recommendations on-site</div><div class="rate-price">₹15,000</div><button class="rate-add-btn" onclick="addToCart('ai-search','AI Search','One-time',15000,'🔍',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎲</div><div class="rate-name">3D Product Viewer</div><div class="rate-desc">Interactive 360° product model viewer (Three.js/WebGL)</div><div class="rate-price">₹20,000</div><button class="rate-add-btn" onclick="addToCart('3d-viewer','3D Product Viewer','One-time',20000,'🎲',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎞️</div><div class="rate-name">Lottie Animation Pack</div><div class="rate-desc">10 custom animated icons, loaders, hero animations</div><div class="rate-price">₹8,000</div><button class="rate-add-btn" onclick="addToCart('lottie','Lottie Animations','One-time',8000,'🎞️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🖼️</div><div class="rate-name">AI Image Generator Tool</div><div class="rate-desc">Built-in DALL-E powered image generation on your website</div><div class="rate-price">₹22,000</div><button class="rate-add-btn" onclick="addToCart('ai-image','AI Image Generator','One-time',22000,'🖼️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎬</div><div class="rate-name">Animated Brand Video</div><div class="rate-desc">60-second animated brand story for hero section</div><div class="rate-price">₹25,000</div><button class="rate-add-btn" onclick="addToCart('brand-video','Animated Brand Video','One-time',25000,'🎬',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📊</div><div class="rate-name">AI Analytics Dashboard</div><div class="rate-desc">Custom dashboard: heatmaps, insights, conversion prediction</div><div class="rate-price">₹16,000</div><button class="rate-add-btn" onclick="addToCart('ai-analytics','AI Analytics Dashboard','One-time',16000,'📊',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🗂️</div><div class="rate-name">CRM Setup & Integration</div><div class="rate-desc">Custom CRM or HubSpot/Zoho setup, pipeline, automation</div><div class="rate-price">₹18,000</div><button class="rate-add-btn" onclick="addToCart('crm','CRM Setup','One-time',18000,'🗂️',this)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="rate-traditional">
+        <div class="rate-grid">
+          <div class="rate-item"><div class="rate-icon">🪧</div><div class="rate-name">Flex Banner / Hoarding (4×5 ft)</div><div class="rate-desc">Design + print coordination</div><div class="rate-price">₹350 min</div><button class="rate-add-btn" onclick="addToCart('flex-sm','Flex Banner 4×5ft','Design+Print',350,'🪧',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🏙️</div><div class="rate-name">Hoarding (10×15 ft)</div><div class="rate-desc">Design + printing + installation coordination</div><div class="rate-price">₹2,500 min</div><button class="rate-add-btn" onclick="addToCart('hoarding-lg','Hoarding 10×15ft','Design+Install',2500,'🏙️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📄</div><div class="rate-name">Pamphlet / Flyer Design</div><div class="rate-desc">Design only. 500-copy printing ~₹1,200 extra</div><div class="rate-price">₹1,500</div><button class="rate-add-btn" onclick="addToCart('flyer','Flyer Design','Design only',1500,'📄',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🚪</div><div class="rate-name">Pamphlet Distribution (500 pcs)</div><div class="rate-desc">Logistics + distribution in Kanpur</div><div class="rate-price">₹2,000</div><button class="rate-add-btn" onclick="addToCart('pamphlet-dist','Pamphlet Distribution','500 pcs',2000,'🚪',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📰</div><div class="rate-name">Newspaper Ad (Design + Placement)</div><div class="rate-desc">Design ₹1,500 + newspaper cost passed on</div><div class="rate-price">₹3,500+</div><button class="rate-add-btn" onclick="addToCart('newspaper-ad','Newspaper Ad','Design+Placement',3500,'📰',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎨</div><div class="rate-name">Wall Painting / Branding</div><div class="rate-desc">Design + coordination + painter charges</div><div class="rate-price">₹5,000+</div><button class="rate-add-btn" onclick="addToCart('wall-paint','Wall Painting','Design+Execution',5000,'🎨',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎪</div><div class="rate-name">Event Branding Setup</div><div class="rate-desc">Standees, backdrops, banners, visiting cards — full kit</div><div class="rate-price">₹8,000+</div><button class="rate-add-btn" onclick="addToCart('event-brand','Event Branding Setup','Full Kit',8000,'🎪',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">💳</div><div class="rate-name">Visiting Card Design + Print (250)</div><div class="rate-desc">Design (₹800) + 250 print (₹1,000)</div><div class="rate-price">₹1,800</div><button class="rate-add-btn" onclick="addToCart('visiting-card','Visiting Cards','Design+Print 250',1800,'💳',this)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="rate-consulting">
+        <div class="rate-grid">
+          <div class="rate-item"><div class="rate-icon">🔍</div><div class="rate-name">Business Audit Call (1 hr)</div><div class="rate-desc">Review digital presence + written action plan</div><div class="rate-price">₹2,500</div><button class="rate-add-btn" onclick="addToCart('audit','Business Audit Call','1 Hour',2500,'🔍',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🗺️</div><div class="rate-name">Digital Marketing Consultation</div><div class="rate-desc">3-hour deep strategy session + roadmap</div><div class="rate-price">₹5,000</div><button class="rate-add-btn" onclick="addToCart('consult','Marketing Consultation','3 Hours',5000,'🗺️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📞</div><div class="rate-name">Monthly Advisory Retainer</div><div class="rate-desc">4 calls/month, strategy support + campaign reviews</div><div class="rate-price">₹12,000/mo</div><button class="rate-add-btn" onclick="addToCart('advisory','Monthly Advisory','Per month',12000,'📞',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📸</div><div class="rate-name">Instagram Marketing Training</div><div class="rate-desc">2-hour session: grow, content strategy, ads basics</div><div class="rate-price">₹3,500/person</div><button class="rate-add-btn" onclick="addToCart('ig-training','Instagram Training','Per person',3500,'📸',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🎓</div><div class="rate-name">Digital Marketing Course (Group)</div><div class="rate-desc">10-session full course, 5–10 students, SEO/ads/social/analytics</div><div class="rate-price">₹8,000/person</div><button class="rate-add-btn" onclick="addToCart('dm-course','DM Course','Per person',8000,'🎓',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🧑‍🏫</div><div class="rate-name">One-to-One Mentoring</div><div class="rate-desc">Weekly 1:1 session, project feedback, career guidance</div><div class="rate-price">₹15,000/mo</div><button class="rate-add-btn" onclick="addToCart('mentoring','1:1 Mentoring','Per month',15000,'🧑‍🏫',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🏢</div><div class="rate-name">Corporate Team Training</div><div class="rate-desc">Full-day workshop for internal marketing/sales team</div><div class="rate-price">₹25,000+</div><button class="rate-add-btn" onclick="addToCart('corp-training','Corporate Training','Full day',25000,'🏢',this)">+ Add</button></div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="rate-hosting">
+        <div class="rate-grid">
+          <div class="rate-item"><div class="rate-icon">🌐</div><div class="rate-name">Domain Name</div><div class="rate-desc">.com / .in / .co.in — DNS management included</div><div class="rate-price">₹800–1,200/yr</div><button class="rate-add-btn" onclick="addToCart('domain','Domain Name','Per year',1000,'🌐',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">📦</div><div class="rate-name">Shared Hosting</div><div class="rate-desc">5 GB SSD, free SSL, 99.9% uptime, 5 email accounts</div><div class="rate-price">₹3,000/yr</div><button class="rate-add-btn" onclick="addToCart('hosting-shared','Shared Hosting','Per year',3000,'📦',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🚀</div><div class="rate-name">Business Hosting</div><div class="rate-desc">20 GB SSD, CDN, daily backups, 20 email accounts</div><div class="rate-price">₹7,000/yr</div><button class="rate-add-btn" onclick="addToCart('hosting-biz','Business Hosting','Per year',7000,'🚀',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">☁️</div><div class="rate-name">Cloud / VPS</div><div class="rate-desc">Dedicated resources, auto-scaling, priority support</div><div class="rate-price">₹15,000+/yr</div><button class="rate-add-btn" onclick="addToCart('hosting-vps','Cloud Hosting','Per year',15000,'☁️',this)">+ Add</button></div>
+          <div class="rate-item"><div class="rate-icon">🏆</div><div class="rate-name">Enterprise Cloud (AI Sites)</div><div class="rate-desc">AWS/Vercel, edge CDN, 99.99% SLA, WAF, auto-scale</div><div class="rate-price">₹35,000+/yr</div><button class="rate-add-btn" onclick="addToCart('hosting-enterprise','Enterprise Cloud','Per year',35000,'🏆',this)">+ Add</button></div>
+        </div>
       </div>
     </div>
-    <div class="sp-item">
-      <div class="sp-icon">📱</div>
-      <div class="sp-name">Social Media Management</div>
-      <div class="sp-desc">Full management of one social media account for one month.</div>
-      <div class="sp-price-row">
-        <span class="sp-price-label">Per month</span>
-        <span class="sp-price-val">₹3,850</span>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 7: BUNDLE CAMPAIGNS
+       ══════════════════════════════════ -->
+  <div class="sec-block">
+    <div class="cat-tag">Section 7</div>
+    <h2 class="cat-title">Campaign Bundles</h2>
+    <p class="cat-desc">Pre-packaged traditional + digital combos for common business moments. Always save more than buying individually.</p>
+    <div class="bundle-grid">
+      <div class="bundle-card">
+        <div class="bundle-name">🎉 FESTIVAL CAMPAIGN</div>
+        <div class="bundle-price">₹12,000</div>
+        <ul class="bundle-includes">
+          <li>2 hoardings (design + print)</li>
+          <li>10 social posts</li>
+          <li>Meta ads (5 days)</li>
+          <li>WhatsApp broadcast</li>
+        </ul>
+        <button class="add-cart-btn" onclick="addToCart('bundle-festival','Festival Campaign Bundle','Combo',12000,'🎉',this)">🛒 ADD TO CART</button>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-name">🚀 BUSINESS LAUNCH PACK</div>
+        <div class="bundle-price">₹25,000</div>
+        <ul class="bundle-includes">
+          <li>Logo + visiting cards</li>
+          <li>1 banner + social setup</li>
+          <li>1 month Starter plan</li>
+          <li>Google My Business setup</li>
+        </ul>
+        <button class="add-cart-btn" onclick="addToCart('bundle-launch','Business Launch Pack','Combo',25000,'🚀',this)">🛒 ADD TO CART</button>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-name">🎊 GRAND OPENING</div>
+        <div class="bundle-price">₹45,000</div>
+        <ul class="bundle-includes">
+          <li>Full event branding setup</li>
+          <li>Pamphlets + newspaper ad</li>
+          <li>2-week social media blitz</li>
+          <li>Google Ads campaign</li>
+        </ul>
+        <button class="add-cart-btn" onclick="addToCart('bundle-grand','Grand Opening Campaign','Combo',45000,'🎊',this)">🛒 ADD TO CART</button>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-name">🗓️ ANNUAL RETAINER</div>
+        <div class="bundle-price">₹1,20,000/yr</div>
+        <ul class="bundle-includes">
+          <li>12-month digital management</li>
+          <li>4 seasonal hoardings/year</li>
+          <li>All major festivals covered</li>
+          <li>Save vs monthly billing</li>
+        </ul>
+        <button class="add-cart-btn" onclick="addToCart('bundle-annual','Annual Marketing Retainer','12 Months',120000,'🗓️',this)">🛒 ADD TO CART</button>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-name">📱 ZERO TO ONLINE</div>
+        <div class="bundle-price">₹22,000</div>
+        <ul class="bundle-includes">
+          <li>Google My Business + WhatsApp setup</li>
+          <li>Instagram + Facebook page creation</li>
+          <li>Landing page + QR code</li>
+          <li>Digital visiting card</li>
+          <li>5 starter posts</li>
+        </ul>
+        <button class="add-cart-btn" onclick="addToCart('bundle-zero','Zero to Online Bundle','Complete Setup',22000,'📱',this)">🛒 ADD TO CART</button>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-name">🎓 EDUCATION LAUNCH</div>
+        <div class="bundle-price">₹30,000</div>
+        <ul class="bundle-includes">
+          <li>Mall LED ad (1 month)</li>
+          <li>Social media ads (Meta)</li>
+          <li>Landing page with lead form</li>
+          <li>WhatsApp broadcast to 200+</li>
+        </ul>
+        <button class="add-cart-btn" onclick="addToCart('bundle-edu','Education Launch','Combo',30000,'🎓',this)">🛒 ADD TO CART</button>
       </div>
     </div>
-    <div class="sp-item">
-      <div class="sp-icon">🔍</div>
-      <div class="sp-name">SEO (Per Keyword)</div>
-      <div class="sp-desc">Rank one keyword on Google — on-page + off-page optimisation.</div>
-      <div class="sp-price-row">
-        <span class="sp-price-label">Per keyword/mo</span>
-        <span class="sp-price-val">₹5,399</span>
-      </div>
-    </div>
-    <div class="sp-item">
-      <div class="sp-icon">🪧</div>
-      <div class="sp-name">Outdoor / Signage Design</div>
-      <div class="sp-desc">Hoarding, signboard, LED or vehicle branding design + execution.</div>
-      <div class="sp-price-row">
-        <span class="sp-price-label">Starting from</span>
-        <span class="sp-price-val">Custom</span>
-      </div>
-    </div>
+  </div>
+
+</div><!-- /price-section -->
+
+<!-- STICKY CART TOTAL -->
+<div class="sticky-total" id="stickyTotal">
+  <div><div class="st-label">Cart Total</div><div class="st-amount" id="stickyAmount">₹0</div></div>
+  <div class="st-btns">
+    <button class="st-view-btn" onclick="openCart()">VIEW CART</button>
+    <button class="st-checkout-btn" onclick="Cart.checkout()">💬 WHATSAPP</button>
   </div>
 </div>
 
 <!-- FAQ -->
-<div class="faq-section">
-  <div class="section-label" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--primary);margin-bottom:14px;">Common Questions</div>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;margin-bottom:30px;">FREQUENTLY ASKED</h2>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Is there a lock-in contract? <span class="faq-icon">+</span></div>
-    <div class="faq-a">No long-term lock-in. All our plans are month-to-month. We prefer to earn your business every month through results, not contracts.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">How soon will I see results from SEO? <span class="faq-icon">+</span></div>
-    <div class="faq-a">SEO typically shows measurable improvement within 4–8 weeks for local keywords. You'll see clear ranking changes in your monthly report.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Do you provide content ideas or do I need to? <span class="faq-icon">+</span></div>
-    <div class="faq-a">We handle everything — content strategy, ideas, scripts, shoot coordination, editing, and posting. You just approve the content calendar each month.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Can I upgrade my plan later? <span class="faq-icon">+</span></div>
-    <div class="faq-a">Absolutely. You can upgrade at any time. The difference in cost is prorated for the remaining days of the month. Many clients start on Starter and grow to Enterprise within 3–6 months.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">Are outdoor advertising (hoardings / signboards) included? <span class="faq-icon">+</span></div>
-    <div class="faq-a">Design creatives for outdoor are included in higher plans. The physical execution cost (printing, LED panels, installation) varies by size and location — we'll give you a separate quote for that.</div>
+<div class="sec">
+  <div class="sec-label">Questions</div>
+  <h2 class="sec-title" style="margin-bottom:30px;">FREQUENTLY ASKED</h2>
+  <div class="faq-wrap">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How does the cart & WhatsApp system work? <span class="faq-icon">+</span></div><div class="faq-a">Add any services to your cart, then click the WhatsApp button. It sends us a pre-formatted message with your selected services and totals. We reply within 2–4 hours to confirm and guide you on payment and onboarding.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is there a long-term contract? <span class="faq-icon">+</span></div><div class="faq-a">No. All monthly plans are month-to-month. Give us 1 month written notice via WhatsApp or email to cancel. One-time projects have no recurring commitment.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When do I pay? <span class="faq-icon">+</span></div><div class="faq-a">Projects under ₹20,000 — 100% advance. Projects above ₹20,000 — 50% advance + 50% on delivery. Monthly retainers — full payment by the 5th of each month. We accept UPI, bank transfer, and cheque for amounts above ₹50,000.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How soon will I see SEO results? <span class="faq-icon">+</span></div><div class="faq-a">Local keywords in Kanpur typically show measurable ranking improvement within 4–8 weeks. You get a monthly ranking report so you can track exactly where you stand.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What makes your AI services unique? <span class="faq-icon">+</span></div><div class="faq-a">No other agency in Kanpur offers GPT-powered chatbots trained on your specific business data, AI-animated websites with GSAP/3D effects, or full WhatsApp automation suites. These are our proprietary offerings.</div></div>
   </div>
 </div>
 
-<!-- CTA -->
 <div class="cta-band">
   <h2>NOT SURE WHICH PLAN?</h2>
-  <p>Talk to us — we'll recommend the right fit for your business and budget, no pressure.</p>
-  <a href="contact.html" class="btn-white">Book a Free Consultation</a>
+  <p>Book a free 30-minute strategy call. We'll review your business and recommend exactly what will move the needle.</p>
+  <div class="btn-row">
+    <a href="https://wa.me/917084861080?text=Hi Digiyaan360! I'd like a free strategy call." target="_blank" class="btn btn-green">💬 WhatsApp for Free Call</a>
+    <a href="contact.html" class="btn btn-white">Fill Contact Form</a>
+  </div>
 </div>
 
-<footer class="site-footer">
+<footer class="footer">
   <div class="footer-top">
-    <div>
-      <div class="footer-logo">DIGIYAAN<span>360</span></div>
-      <p class="footer-desc">360° Marketing Agency — Digital, Print &amp; On-Ground.</p>
-      <p style="font-size:13px;color:var(--muted-text);margin-top:8px;">📞 +91-7084861080</p>
-    </div>
-    <div class="footer-nav">
-      <div class="footer-nav-col">
-        <div class="footer-nav-title">Pages</div>
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="portfolio.html">Portfolio</a>
-      </div>
-      <div class="footer-nav-col">
-        <div class="footer-nav-title">Company</div>
-        <a href="case-studies.html">Case Studies</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <a href="https://wa.me/917084861080" target="_blank">WhatsApp Us</a>
-      </div>
-    </div>
+    <div><div class="footer-logo">DIGIYAAN360</div><p class="footer-desc">360° Marketing — Digital, AI, Print & On-Ground. Kanpur's most trusted growth partner.</p><div class="footer-contact"><a href="tel:+917084861080">📞 +91-7084861080</a><a href="tel:+918765341863">📞 +91-8765341863</a><a href="mailto:info.digiyaan@gmail.com">✉️ info.digiyaan@gmail.com</a></div></div>
+    <div><div class="footer-col-title">Pages</div><div class="footer-col"><a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="portfolio.html">Portfolio</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-col"><a href="case-studies.html">Case Studies</a><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="https://wa.me/917084861080" target="_blank">WhatsApp Us</a></div></div>
+    <div><div class="footer-col-title">Plans</div><div class="footer-col"><a href="#tab-ig">Instagram Plans</a><a href="#tab-fb">Facebook Plans</a><a href="pricing.html#yt">YouTube Plans</a><a href="pricing.html#brand">Branding Plans</a></div></div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 Digiyaan360. All rights reserved.</span>
-    <span>Optimize · Advertise · Amplify</span>
-  </div>
+  <div class="footer-bottom"><span>© 2025 Digiyaan360. All rights reserved. | Kanpur, Uttar Pradesh</span><span>Optimize · Advertise · Amplify</span></div>
 </footer>
 
-<script src="shared.js"></script>
+<a class="wa-fab" href="https://wa.me/917084861080" target="_blank">💬</a>
+
+<script src="app.js"></script>
 <script>
-function switchTab(id, btn) {
-  ['digital','content','complete'].forEach(function(t){
-    document.getElementById('tab-'+t).style.display = t===id ? 'block' : 'none';
-  });
-  document.querySelectorAll('.plan-tab').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
-}
-function toggleFaq(q) {
-  var item = q.parentElement;
-  item.classList.toggle('open');
-}
+// Keep sticky total in sync
+setInterval(function(){
+  var el = document.getElementById('stickyAmount');
+  if (el) el.textContent = '₹' + Cart.total().toLocaleString('en-IN');
+}, 300);
 </script>
 </body>
 </html>
