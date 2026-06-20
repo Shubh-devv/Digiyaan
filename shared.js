@@ -102,12 +102,42 @@ var DG_CART = {
   },
 
   showAddedFeedback: function(id) {
-    // pulse all add-to-cart buttons with this id
     document.querySelectorAll('[data-cart-id="'+id+'"]').forEach(function(btn){
       btn.classList.add('added');
       btn.innerHTML = '✓ ADDED TO CART';
       setTimeout(function(){ btn.classList.remove('added'); btn.innerHTML = '🛒 ADD TO CART'; }, 1800);
     });
+    this.showCartPopup();
+  },
+
+  showCartPopup: function() {
+    var popup = document.getElementById('cartSnackbar');
+    if(!popup) return;
+
+    // Render items
+    var itemsHtml = this.items.map(function(item){
+      return '<div class="csp-item">'+
+        '<span class="csp-icon">'+(item.icon||'📦')+'</span>'+
+        '<div class="csp-info">'+
+          '<span class="csp-name">'+item.name+'</span>'+
+          '<span class="csp-plan">'+item.plan+(item.qty>1?' ×'+item.qty:'')+'</span>'+
+        '</div>'+
+        '<span class="csp-price">₹'+(item.price*(item.qty||1)).toLocaleString('en-IN')+'</span>'+
+      '</div>';
+    }).join('');
+
+    document.getElementById('cspItems').innerHTML = itemsHtml;
+    document.getElementById('cspTotal').textContent = '₹'+this.total().toLocaleString('en-IN');
+    document.getElementById('cspCount').textContent = this.count() + (this.count()===1?' item':' items');
+
+    // Show
+    popup.classList.add('show');
+
+    // Reset auto-hide timer
+    if(this._cspTimer) clearTimeout(this._cspTimer);
+    this._cspTimer = setTimeout(function(){
+      popup.classList.remove('show');
+    }, 4500);
   },
 
   renderItems: function() {
@@ -293,6 +323,22 @@ window.submitCheckout = function(e) {
 document.addEventListener('DOMContentLoaded', function() {
   DG_CART.load();
   DG_CART.updateUI();
+
+  // Inject cart snackbar popup
+  var snack = document.createElement('div');
+  snack.id = 'cartSnackbar';
+  snack.className = 'cart-snackbar';
+  snack.innerHTML =
+    '<div class="csp-head">'+
+      '<span class="csp-title">🛒 Your Cart &nbsp;<span id="cspCount" class="csp-count"></span></span>'+
+      '<button class="csp-close" onclick="document.getElementById(\'cartSnackbar\').classList.remove(\'show\')" aria-label="Close">✕</button>'+
+    '</div>'+
+    '<div class="csp-body" id="cspItems"></div>'+
+    '<div class="csp-foot">'+
+      '<div class="csp-total-row"><span>Total</span><strong id="cspTotal">₹0</strong></div>'+
+      '<button class="csp-view-btn" onclick="document.getElementById(\'cartSnackbar\').classList.remove(\'show\');openCart();">View Cart &amp; Checkout →</button>'+
+    '</div>';
+  document.body.appendChild(snack);
 
   // Cart overlay click to close
   var ov = document.getElementById('cartOverlay');
