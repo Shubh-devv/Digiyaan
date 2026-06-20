@@ -342,6 +342,87 @@ nav { position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:
   .form-row { grid-template-columns:1fr; }
   .plans-grid { grid-template-columns:1fr; }
 }
+/* ── WHATSAPP FLOAT & POPUP ── */
+.wa-float {
+  position:fixed; bottom:28px; right:28px; z-index:9000;
+  width:60px; height:60px; background:#25D366; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.5);
+  cursor:pointer; transition:transform 0.2s;
+  animation:wa-pulse 2.8s ease-in-out infinite;
+  border:none; outline:none;
+}
+.wa-float:hover { transform:scale(1.12); }
+.wa-float svg { width:32px; height:32px; fill:#fff; }
+@keyframes wa-pulse {
+  0%,100%{ box-shadow:0 4px 20px rgba(37,211,102,0.5); }
+  50%{ box-shadow:0 4px 32px rgba(37,211,102,0.75),0 0 0 12px rgba(37,211,102,0.12); }
+}
+.wa-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9100;
+  opacity:0; pointer-events:none; transition:opacity 0.3s; backdrop-filter:blur(3px);
+}
+.wa-overlay.open { opacity:1; pointer-events:all; }
+.wa-modal {
+  position:fixed; bottom:102px; right:28px; z-index:9200;
+  width:340px; max-width:calc(100vw - 32px);
+  background:var(--card-bg); border:1px solid var(--border);
+  border-radius:18px; box-shadow:0 24px 64px rgba(0,0,0,0.45);
+  transform:translateY(18px) scale(0.94); opacity:0; pointer-events:none;
+  transition:all 0.32s cubic-bezier(0.34,1.56,0.64,1);
+}
+.wa-modal.open { transform:translateY(0) scale(1); opacity:1; pointer-events:all; }
+.wa-modal-head {
+  background:linear-gradient(135deg,#075E54 0%,#128C7E 100%);
+  border-radius:18px 18px 0 0; padding:16px 18px;
+  display:flex; align-items:center; gap:12px;
+}
+.wa-modal-avatar {
+  width:46px; height:46px; background:#25D366; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:24px; flex-shrink:0; box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+.wa-modal-info h4 { color:#fff; font-size:14px; font-weight:700; margin:0 0 3px; }
+.wa-modal-info p { color:rgba(255,255,255,0.72); font-size:11px; margin:0; }
+.wa-modal-close {
+  margin-left:auto; color:rgba(255,255,255,0.7); background:none;
+  border:none; font-size:22px; cursor:pointer; line-height:1; padding:2px 6px;
+}
+.wa-modal-close:hover { color:#fff; }
+.wa-modal-body { padding:18px 18px 20px; }
+.wa-bubble {
+  background:#dcf8c6; color:#111; padding:11px 14px;
+  border-radius:12px 12px 12px 2px; font-size:13px; line-height:1.6;
+  margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,0.12);
+}
+.wa-field-label {
+  font-size:11px; font-weight:700; color:var(--muted-text);
+  text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:5px;
+}
+.wa-input {
+  width:100%; background:var(--input-bg); border:1.5px solid var(--border);
+  border-radius:9px; padding:10px 13px; color:var(--text); font-size:13.5px;
+  font-family:Manrope,sans-serif; outline:none; box-sizing:border-box;
+  margin-bottom:12px; transition:border-color 0.2s;
+}
+.wa-input:focus { border-color:#25D366; }
+.wa-textarea { height:76px; resize:none; }
+.wa-send-btn {
+  width:100%; padding:13px; background:#25D366; color:#fff;
+  border:none; border-radius:9px; font-size:15px; font-weight:700;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  gap:8px; transition:background 0.2s,transform 0.2s; font-family:Manrope,sans-serif;
+  margin-top:4px;
+}
+.wa-send-btn:hover { background:#20ba5a; transform:translateY(-1px); }
+.wa-send-btn svg { width:18px; height:18px; fill:#fff; }
+
+@media(max-width:600px){
+  .wa-modal { right:12px; bottom:88px; width:calc(100vw - 24px); }
+  .wa-float { bottom:18px; right:14px; width:54px; height:54px; }
+}
+
+/* ── MOBILE (existing) ── */
 @media(max-width:600px){
   .cart-sidebar { width:100%; }
   .checkout-body { padding:20px; }

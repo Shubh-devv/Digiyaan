@@ -197,6 +197,98 @@ window.submitCheckout = function(e) {
   setTimeout(function(){ window.open(waURL,'_blank'); }, 800);
 };
 
+// ══════════════════════════════════════════
+// WHATSAPP POPUP
+// ══════════════════════════════════════════
+(function(){
+  var WA_NUMBER = '917084861080';
+
+  function injectWA() {
+    var html = [
+      // Floating button
+      '<button class="wa-float" id="waFloat" aria-label="Chat on WhatsApp">',
+        '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">',
+          '<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.849L.057 23.716a.5.5 0 00.609.637l5.99-1.573A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 01-5.127-1.414l-.367-.218-3.797.996.999-3.698-.239-.38A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>',
+        '</svg>',
+      '</button>',
+      // Overlay
+      '<div class="wa-overlay" id="waOverlay"></div>',
+      // Modal
+      '<div class="wa-modal" id="waModal" role="dialog" aria-modal="true" aria-label="Contact us on WhatsApp">',
+        '<div class="wa-modal-head">',
+          '<div class="wa-modal-avatar">💬</div>',
+          '<div class="wa-modal-info">',
+            '<h4>Digiyaan360</h4>',
+            '<p>🟢 Typically replies within minutes</p>',
+          '</div>',
+          '<button class="wa-modal-close" id="waClose" aria-label="Close">✕</button>',
+        '</div>',
+        '<div class="wa-modal-body">',
+          '<div class="wa-bubble">👋 Hi! Tell us your name, number & what you need — we\'ll get back on WhatsApp instantly!</div>',
+          '<form id="waForm" autocomplete="off">',
+            '<label class="wa-field-label" for="wa-name">Your Name *</label>',
+            '<input class="wa-input" id="wa-name" type="text" placeholder="e.g. Rahul Sharma" required />',
+            '<label class="wa-field-label" for="wa-phone">WhatsApp Number *</label>',
+            '<input class="wa-input" id="wa-phone" type="tel" placeholder="+91 98765 43210" required />',
+            '<label class="wa-field-label" for="wa-req">Your Requirement</label>',
+            '<textarea class="wa-input wa-textarea" id="wa-req" placeholder="e.g. I need social media management for my clothing brand..."></textarea>',
+            '<button type="submit" class="wa-send-btn">',
+              '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.849L.057 23.716a.5.5 0 00.609.637l5.99-1.573A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 01-5.127-1.414l-.367-.218-3.797.996.999-3.698-.239-.38A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>',
+              'Chat on WhatsApp',
+            '</button>',
+          '</form>',
+        '</div>',
+      '</div>'
+    ].join('');
+
+    var wrap = document.createElement('div');
+    wrap.innerHTML = html;
+    while(wrap.firstChild) document.body.appendChild(wrap.firstChild);
+
+    // Events
+    var floatBtn = document.getElementById('waFloat');
+    var overlay  = document.getElementById('waOverlay');
+    var modal    = document.getElementById('waModal');
+    var closeBtn = document.getElementById('waClose');
+    var form     = document.getElementById('waForm');
+
+    function openWA() { modal.classList.add('open'); overlay.classList.add('open'); }
+    function closeWA() { modal.classList.remove('open'); overlay.classList.remove('open'); }
+
+    floatBtn.addEventListener('click', function(){ modal.classList.contains('open') ? closeWA() : openWA(); });
+    closeBtn.addEventListener('click', closeWA);
+    overlay.addEventListener('click', closeWA);
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name  = document.getElementById('wa-name').value.trim();
+      var phone = document.getElementById('wa-phone').value.trim();
+      var req   = document.getElementById('wa-req').value.trim();
+
+      if(!name || !phone) { alert('Please enter your name and WhatsApp number.'); return; }
+
+      var lines = [
+        '👋 *New Enquiry – DIGIYAAN360*', '',
+        '👤 *Name:* ' + name,
+        '📞 *Phone:* ' + phone
+      ];
+      if(req) { lines.push(''); lines.push('📝 *Requirement:*'); lines.push(req); }
+      lines.push(''); lines.push('_(Sent via digiyaan360.com)_');
+
+      var waURL = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+      window.open(waURL, '_blank');
+      closeWA();
+      form.reset();
+    });
+  }
+
+  if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectWA);
+  } else {
+    injectWA();
+  }
+})();
+
 // ── INIT ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
   DG_CART.load();
