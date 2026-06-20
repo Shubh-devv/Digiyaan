@@ -3,67 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digiyaan360 – 360° Digital Marketing Agency, Kanpur</title>
-<link rel="stylesheet" href="style.css">
+<title>Digiyaan360 – 360° Digital Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-/* ── HOME ONLY ── */
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px;}
-.why-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:28px;transition:border-color .2s,transform .2s;}
-.why-card:hover{border-color:var(--primary);transform:translateY(-3px);}
-.why-icon{font-size:28px;margin-bottom:14px;}
-.why-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;margin-bottom:8px;color:var(--text);}
-.why-desc{font-size:13px;color:var(--text2);line-height:1.7;}
-.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:40px;}
-.review-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:24px;}
-.review-stars{color:var(--gold);font-size:14px;margin-bottom:12px;}
-[data-theme="light"] .review-stars{color:#d4a000;}
-.review-text{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:16px;}
-.review-author{font-weight:700;font-size:13px;color:var(--text);}
-.review-biz{font-size:12px;color:var(--text3);}
-.compare-table{width:100%;border-collapse:collapse;margin-top:36px;font-size:13px;}
-.compare-table th{padding:12px 18px;text-align:left;border-bottom:2px solid var(--border2);color:var(--text2);font-size:10px;letter-spacing:3px;text-transform:uppercase;background:var(--bg3);}
-.compare-table td{padding:11px 18px;border-bottom:1px solid var(--border);color:var(--text2);}
-.compare-table tr:hover td{background:var(--card);}
-.compare-table .yes{color:var(--green);font-weight:700;}
-.compare-table .no{color:var(--text3);}
-.compare-table .them .no::after{content:' ✗';}
-.compare-table .us .yes::after{content:' ✓';}
+/* ── HOME HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 5% 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.4;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(54px, 10vw, 130px);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+.hero-title .blue { color: var(--primary); }
+.hero-title .gold { color: var(--gold); }
+.hero-sub {
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--muted-text);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.hero-hindi {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 14px; color: var(--muted-text); opacity: 0.6;
+  margin-bottom: 40px;
+}
+.hero-cta {
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+}
+.btn-primary {
+  padding: 15px 40px;
+  background: linear-gradient(135deg, var(--primary) 0%, #1a3d80 100%);
+  color: #fff; border: none; border-radius: 2px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px; letter-spacing: 2px;
+  cursor: pointer; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(36,82,160,0.4); }
+.btn-outline {
+  padding: 15px 40px;
+  background: transparent;
+  color: var(--text); border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px; letter-spacing: 2px;
+  cursor: pointer; text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+/* Stats bar */
+.stats-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 0 5%;
+}
+.stat-item {
+  padding: 36px 24px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1;
+  background: linear-gradient(135deg, var(--primary), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label { font-size: 11px; color: var(--muted-text); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+
+/* Services preview */
+.section { padding: 90px 5%; }
+.section-label {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--primary); margin-bottom: 14px;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.section-sub { font-size: 15px; color: var(--muted-text); max-width: 520px; line-height: 1.7; }
+
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 50px;
+}
+.srv-card {
+  background: var(--card-bg);
+  padding: 36px 28px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.srv-card:hover { background: var(--card-hover); }
+.srv-icon { font-size: 32px; margin-bottom: 18px; }
+.srv-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 1px;
+  margin-bottom: 10px; color: var(--text);
+}
+.srv-desc { font-size: 13px; color: var(--muted-text); line-height: 1.7; }
+.srv-price {
+  margin-top: 18px;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Plans teaser */
+.plans-teaser {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; margin-top: 50px;
+}
+.plan-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 36px 28px;
+  background: var(--card-bg);
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+.plan-card.featured { border-color: var(--primary); }
+.plan-badge {
+  position: absolute; top: 0; right: 0;
+  padding: 5px 14px; background: var(--primary);
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #fff;
+  border-radius: 0 4px 0 4px;
+}
+.plan-tier {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--muted-text); margin-bottom: 12px;
+}
+.plan-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px; letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.plan-price {
+  font-size: 13px; color: var(--muted-text); margin-bottom: 20px;
+}
+.plan-price strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px; letter-spacing: 1px; color: var(--text);
+}
+.plan-features { list-style: none; margin-bottom: 28px; }
+.plan-features li {
+  font-size: 13px; color: var(--muted-text);
+  padding: 6px 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.plan-features li::before { content: '✓'; color: var(--primary); font-weight: 700; }
+
+/* Testimonials */
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; margin-top: 50px;
+}
+.review-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 4px; padding: 28px;
+}
+.review-stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; }
+.review-text { font-size: 14px; color: var(--muted-text); line-height: 1.7; margin-bottom: 18px; }
+.review-author { font-weight: 700; font-size: 13px; }
+.review-biz { font-size: 12px; color: var(--muted-text); }
+
+/* CTA band */
+.cta-band {
+  background: linear-gradient(135deg, var(--primary) 0%, #1a3d80 100%);
+  padding: 80px 5%; text-align: center;
+}
+.cta-band h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 6vw, 72px); letter-spacing: 2px;
+  margin-bottom: 16px; color: #fff;
+}
+.cta-band p { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 36px; }
+.btn-white {
+  padding: 15px 40px; background: #fff; color: var(--primary);
+  border: none; border-radius: 2px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px; letter-spacing: 2px;
+  cursor: pointer; text-decoration: none;
+  transition: transform 0.2s;
+}
+.btn-white:hover { transform: translateY(-2px); }
+
+/* Hero BG rings */
+.hero-rings {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(36,82,160,0.12);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  animation: ring-pulse 4s ease-in-out infinite;
+}
+.ring:nth-child(1) { width: 400px; height: 400px; }
+.ring:nth-child(2) { width: 650px; height: 650px; animation-delay: 1.3s; }
+.ring:nth-child(3) { width: 900px; height: 900px; animation-delay: 2.6s; }
+@keyframes ring-pulse { 0%,100%{opacity:0.2}50%{opacity:0.6} }
+
+@media(max-width:768px){
+  .stats-bar { grid-template-columns: repeat(2,1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .plans-teaser { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
-<div class="cur" id="cursor"></div>
-<div class="cur-r" id="cursorRing"></div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- SPLASH -->
 <div id="splash">
-  <div class="sp-ring"></div><div class="sp-ring"></div><div class="sp-ring"></div>
-  <div class="sp-logo">DIGIYAAN360</div>
-  <div class="sp-tag">Optimize · Advertise · Amplify</div>
-  <div class="sp-desc">Kanpur's Most Complete Marketing Agency — Digital, Print & On-Ground</div>
-  <button class="sp-btn" onclick="closeSplash()">ENTER SITE →</button>
-</div>
-
-<!-- CART SIDEBAR -->
-<div class="cart-overlay" id="cartOverlay"></div>
-<div class="cart-panel" id="cartPanel">
-  <div class="cart-head">
-    <h3>🛒 MY SERVICES</h3>
-    <button class="cart-close" onclick="closeCart()">✕</button>
-  </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-foot">
-    <div class="cart-total">
-      <span class="cart-total-label">Monthly Total</span>
-      <span class="cart-total-price" id="cartTotal">₹0</span>
-    </div>
-    <p class="cart-note">💬 Click below to enquire via WhatsApp. Our team will confirm and process your plan.</p>
-    <button class="cart-checkout" onclick="Cart.checkout()">💬 ENQUIRE ON WHATSAPP</button>
-  </div>
+  <div class="splash-ring"></div>
+  <div class="splash-ring"></div>
+  <div class="splash-ring"></div>
+  <div class="splash-badge">DIGIYAAN360</div>
+  <div class="splash-sub">360° Digital Marketing Agency</div>
+  <div class="splash-tagline">Your Complete Growth Partner – Digital • Print • On-Ground</div>
+  <div class="splash-hindi">सभी मार्केटिंग सेवाएं एक ही छत के नीचे</div>
+  <button class="enter-btn" onclick="closeSplash()">EXPLORE NOW →</button>
 </div>
 
 <!-- NAV -->
 <nav id="mainNav">
-  <a href="index.html" class="nav-logo">DIGIYAAN360</a>
+  <a href="index.html" class="nav-logo">DIGIYAAN<span>360</span></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="services.html">Services</a></li>
@@ -73,9 +264,10 @@
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <div class="nav-right">
-    <button class="theme-btn" id="themeToggle"><span id="themeIcon">☀️</span></button>
-    <button class="cart-btn" onclick="openCart()">🛒 Cart <span class="cart-count hidden" id="cartCount">0</span></button>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+      <span id="themeIcon">☀️</span>
+    </button>
     <a href="contact.html" class="nav-cta">Get Started</a>
     <button class="hamburger" id="hamburger">☰</button>
   </div>
@@ -84,200 +276,201 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-rings">
-    <div class="h-ring"></div><div class="h-ring"></div><div class="h-ring"></div>
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
   </div>
-  <div class="hero-eye">Kanpur's #1 Digital Agency</div>
+  <div class="hero-eyebrow">Kanpur's #1 Digital Agency</div>
   <h1 class="hero-title">
-    <span class="bl">DIGI</span><span class="gd">YAAN</span><br>360°
+    <span class="blue">DIGI</span><span class="gold">YAAN</span><br>360°
   </h1>
-  <p class="hero-sub">One agency for social media, video production, photography, SEO, AI chatbots, websites, hoardings and more. We grow your business 360 degrees.</p>
+  <p class="hero-sub">One agency for everything — social media, video production, SEO, signboards, hoardings, and more. We grow your business 360 degrees.</p>
+  <p class="hero-hindi">डिजिटल से ऑफलाइन तक — सब कुछ एक जगह</p>
   <div class="hero-cta">
-    <a href="pricing.html" class="btn btn-blue">Browse Plans & Pricing</a>
-    <a href="portfolio.html" class="btn btn-outline">See Our Work</a>
+    <a href="pricing.html" class="btn-primary">View Plans & Pricing</a>
+    <a href="portfolio.html" class="btn-outline">See Our Work</a>
   </div>
 </section>
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-item"><div class="stat-num">200+</div><div class="stat-label">Clients Served</div></div>
-  <div class="stat-item"><div class="stat-num">5+</div><div class="stat-label">Years Active</div></div>
-  <div class="stat-item"><div class="stat-num">360°</div><div class="stat-label">Marketing Coverage</div></div>
-  <div class="stat-item"><div class="stat-num">₹8K</div><div class="stat-label">Plans Start From</div></div>
+  <div class="stat-item">
+    <div class="stat-num">200+</div>
+    <div class="stat-label">Clients Served</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">Years Active</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">360°</div>
+    <div class="stat-label">Marketing Coverage</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">₹3.5K</div>
+    <div class="stat-label">Plans Start From</div>
+  </div>
 </div>
 
-<!-- SERVICES OVERVIEW -->
-<section class="sec">
-  <div class="sec-label">What We Do</div>
-  <h2 class="sec-title">Every Service. One Roof.</h2>
-  <p class="sec-sub">From a single reel to a full AI-powered website — Digiyaan360 handles everything so you can focus on running your business.</p>
-  <div class="srv-grid">
-    <div class="srv-card"><div class="srv-icon">📱</div><div class="srv-name">Social Media</div><div class="srv-desc">Instagram, Facebook, YouTube — managed end-to-end with content, reels, ads and reporting.</div><div class="srv-price">From ₹8,000/mo</div></div>
-    <div class="srv-card"><div class="srv-icon">🎬</div><div class="srv-name">Video Production</div><div class="srv-desc">Reels, brand videos, YouTube content — shot and edited to stop the scroll.</div><div class="srv-price">From ₹8,000 setup</div></div>
-    <div class="srv-card"><div class="srv-icon">📸</div><div class="srv-name">Photography</div><div class="srv-desc">Professional product, brand and event shoots with same-week delivery.</div><div class="srv-price">From ₹3,500/shoot</div></div>
-    <div class="srv-card"><div class="srv-icon">🔍</div><div class="srv-name">SEO</div><div class="srv-desc">Rank on Google and capture organic traffic that converts to customers.</div><div class="srv-price">From ₹5,000/mo</div></div>
-    <div class="srv-card"><div class="srv-icon">🤖</div><div class="srv-name">AI Chatbot & Automation</div><div class="srv-desc">WhatsApp bots, AI chatbots, lead gen systems — no Kanpur agency offers this.</div><div class="srv-price">From ₹14,000</div></div>
-    <div class="srv-card"><div class="srv-icon">💻</div><div class="srv-name">Website & App</div><div class="srv-desc">From basic landing pages to AI-animated premium websites (like Apple, Stripe).</div><div class="srv-price">From ₹15,000</div></div>
-    <div class="srv-card"><div class="srv-icon">🪧</div><div class="srv-name">Outdoor / OOH</div><div class="srv-desc">Hoardings, signboards, vehicle branding, mall LED ads — design to installation.</div><div class="srv-price">From ₹1,500</div></div>
-    <div class="srv-card"><div class="srv-icon">🎯</div><div class="srv-name">Paid Ads</div><div class="srv-desc">Meta (FB/Instagram) and Google Ads campaigns managed for maximum ROI.</div><div class="srv-price">From ₹5,000 setup</div></div>
+<!-- SERVICES PREVIEW -->
+<section class="section">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Every Service You Need.<br>One Roof. One Bill.</h2>
+  <p class="section-sub">From a single reel to a full-stack marketing engine — Digiyaan360 handles it all so you can focus on your business.</p>
+  <div class="services-grid">
+    <div class="srv-card" onclick="location.href='services.html#photography'">
+      <div class="srv-icon">📸</div>
+      <div class="srv-name">Photography</div>
+      <div class="srv-desc">Professional product, brand & event shoots that make your business look premium.</div>
+      <div class="srv-price">From ₹3,850 / shoot</div>
+    </div>
+    <div class="srv-card" onclick="location.href='services.html#video'">
+      <div class="srv-icon">🎬</div>
+      <div class="srv-name">Video Editing</div>
+      <div class="srv-desc">Reels under 1 min to full 3–5 minute brand videos — edited to stop the scroll.</div>
+      <div class="srv-price">Reels from ₹549</div>
+    </div>
+    <div class="srv-card" onclick="location.href='services.html#social'">
+      <div class="srv-icon">📱</div>
+      <div class="srv-name">Social Media Management</div>
+      <div class="srv-desc">Daily content, engagement & growth management across Instagram, Facebook & more.</div>
+      <div class="srv-price">From ₹3,850 / month</div>
+    </div>
+    <div class="srv-card" onclick="location.href='services.html#seo'">
+      <div class="srv-icon">🔍</div>
+      <div class="srv-name">SEO</div>
+      <div class="srv-desc">Rank on Google and capture organic traffic that converts into real paying customers.</div>
+      <div class="srv-price">From ₹5,399 / keyword</div>
+    </div>
+    <div class="srv-card" onclick="location.href='services.html#outdoor'">
+      <div class="srv-icon">🪧</div>
+      <div class="srv-name">Outdoor Advertising</div>
+      <div class="srv-desc">Hoardings, signboards, LED displays and vehicle branding that dominate your local market.</div>
+      <div class="srv-price">Custom Quote</div>
+    </div>
+    <div class="srv-card" onclick="location.href='services.html#web'">
+      <div class="srv-icon">💻</div>
+      <div class="srv-name">Website Design</div>
+      <div class="srv-desc">Fast, conversion-focused websites that build trust and generate leads around the clock.</div>
+      <div class="srv-price">Custom Quote</div>
+    </div>
   </div>
-  <div style="text-align:center;margin-top:30px;">
-    <a href="services.html" class="btn btn-outline">Explore All Services →</a>
-  </div>
-</section>
-
-<!-- WHY DIGIYAAN -->
-<section class="sec sec-alt">
-  <div class="sec-label">Why Choose Us</div>
-  <h2 class="sec-title">What Competitors Don't Offer</h2>
-  <p class="sec-sub">No other agency in Kanpur offers this complete stack. We combine digital + traditional + AI under one roof.</p>
-  <div class="why-grid">
-    <div class="why-card"><div class="why-icon">🤖</div><div class="why-title">AI Tools & Chatbots</div><div class="why-desc">GPT-powered chatbots trained on YOUR business data, WhatsApp automation, AI lead gen — zero other local agency offers this.</div></div>
-    <div class="why-card"><div class="why-icon">✨</div><div class="why-title">AI-Animated Websites</div><div class="why-desc">GSAP animations, 3D effects, motion UI like Apple.com. Premium product no Kanpur agency can match.</div></div>
-    <div class="why-card"><div class="why-icon">📊</div><div class="why-title">Monthly Reports</div><div class="why-desc">Real numbers every month — reach, leads, rankings, revenue impact. Not just pretty posts with no data.</div></div>
-    <div class="why-card"><div class="why-icon">🏙️</div><div class="why-title">Digital + Traditional</div><div class="why-desc">Instagram + hoarding + WhatsApp broadcast — true 360° marketing. Competitors offer one, we offer all.</div></div>
-    <div class="why-card"><div class="why-icon">💯</div><div class="why-title">Transparent Pricing</div><div class="why-desc">Fixed plans, no hidden charges, no long-term lock-in. Cancel anytime with 1 month notice.</div></div>
-    <div class="why-card"><div class="why-icon">⚡</div><div class="why-title">Fast Delivery</div><div class="why-desc">Reels in 48 hours. Basic websites in 2 weeks. Signboard designs same day. Speed matters for your business.</div></div>
-  </div>
-
-  <!-- Comparison table -->
-  <div style="margin-top:50px;">
-    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:6px;color:var(--text);">DIGIYAAN360 vs Other Kanpur Agencies</h3>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:0;">An honest comparison.</p>
-    <table class="compare-table">
-      <thead><tr><th>Feature</th><th>Digiyaan360 ✅</th><th>Other Agencies ❌</th></tr></thead>
-      <tbody>
-        <tr><td>AI Chatbots</td><td class="yes us">Included</td><td class="no them">Not offered</td></tr>
-        <tr><td>AI Animated Websites</td><td class="yes us">Flagship product</td><td class="no them">Not offered</td></tr>
-        <tr><td>Full 360° (Digital + Traditional)</td><td class="yes us">Both</td><td class="no them">Digital only</td></tr>
-        <tr><td>Monthly Analytics Report</td><td class="yes us">Every month</td><td class="no them">Rarely</td></tr>
-        <tr><td>WhatsApp Automation</td><td class="yes us">Full suite</td><td class="no them">Not offered</td></tr>
-        <tr><td>Transparent Pricing</td><td class="yes us">Fixed plans</td><td class="no them">Hidden charges</td></tr>
-        <tr><td>No Long-Term Lock-In</td><td class="yes us">Cancel anytime</td><td class="no them">6–12 month contracts</td></tr>
-        <tr><td>Training & Consulting</td><td class="yes us">Available</td><td class="no them">Not offered</td></tr>
-      </tbody>
-    </table>
+  <div style="text-align:center;margin-top:36px;">
+    <a href="services.html" class="btn-primary">Explore All Services</a>
   </div>
 </section>
 
-<!-- PLAN TEASERS -->
-<section class="sec">
-  <div class="sec-label">Pricing Plans</div>
-  <h2 class="sec-title">Simple Plans. Zero Confusion.</h2>
-  <p class="sec-sub">Pick a plan, add it to cart, and enquire on WhatsApp. We'll get back within hours.</p>
-  <div class="plans-grid" style="max-width:900px;">
+<!-- PLANS TEASER -->
+<section class="section" style="padding-top:0;">
+  <div class="section-label">Pricing Plans</div>
+  <h2 class="section-title">Simple Plans. Zero Confusion.</h2>
+  <p class="section-sub">Pick the right plan for your business size. All plans include dedicated support and monthly reporting.</p>
+  <div class="plans-teaser">
     <div class="plan-card">
-      <div class="plan-head">
-        <div class="plan-tier">Small Business</div>
-        <div class="plan-name">STARTER</div>
-        <div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">8,000</span><span class="plan-per">/mo</span></div>
-        <div class="plan-tagline">8 posts · 1 Meta campaign · Basic SEO</div>
-      </div>
-      <div class="plan-foot">
-        <button class="add-cart-btn" onclick="addToCart('starter-retainer','Monthly Retainer','Starter Plan',8000,'📱',this)">🛒 ADD TO CART</button>
-      </div>
+      <div class="plan-tier">For Startups &amp; Small Shops</div>
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">from <strong>₹9,999</strong> /mo</div>
+      <ul class="plan-features">
+        <li>Social Media Management</li>
+        <li>12 Posts / Month</li>
+        <li>2 Reels / Month</li>
+        <li>Monthly Report</li>
+      </ul>
+      <a href="pricing.html" class="btn-primary" style="display:block;text-align:center;font-size:14px;">See Full Plan</a>
     </div>
     <div class="plan-card featured">
-      <div class="plan-badge">⭐ MOST POPULAR</div>
-      <div class="plan-head">
-        <div class="plan-tier">Growing Business</div>
-        <div class="plan-name">GROWTH</div>
-        <div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">18,000</span><span class="plan-per">/mo</span></div>
-        <div class="plan-tagline">20 posts · 2 reels · 2 campaigns · SEO + AI chatbot</div>
-      </div>
-      <div class="plan-foot">
-        <button class="add-cart-btn" onclick="addToCart('growth-retainer','Monthly Retainer','Growth Plan',18000,'📈',this)">🛒 ADD TO CART</button>
-      </div>
+      <div class="plan-badge">MOST POPULAR</div>
+      <div class="plan-tier">For Growing Businesses</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-price">from <strong>₹19,999</strong> /mo</div>
+      <ul class="plan-features">
+        <li>Social Media + SEO</li>
+        <li>20 Posts / Month</li>
+        <li>4 Reels + 1 Brand Video</li>
+        <li>1 Photo Shoot / Month</li>
+        <li>Bi-Weekly Reports</li>
+      </ul>
+      <a href="pricing.html" class="btn-primary" style="display:block;text-align:center;font-size:14px;">See Full Plan</a>
     </div>
     <div class="plan-card">
-      <div class="plan-head">
-        <div class="plan-tier">Established Brand</div>
-        <div class="plan-name">PRO BRAND</div>
-        <div class="plan-price"><span class="plan-curr">₹</span><span class="plan-amt">35,000</span><span class="plan-per">/mo</span></div>
-        <div class="plan-tagline">30 posts + reels · 4 campaigns · Full SEO + AI suite</div>
-      </div>
-      <div class="plan-foot">
-        <button class="add-cart-btn" onclick="addToCart('pro-retainer','Monthly Retainer','Pro Brand Plan',35000,'🚀',this)">🛒 ADD TO CART</button>
-      </div>
+      <div class="plan-tier">For Established Brands</div>
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-price">from <strong>₹39,999</strong> /mo</div>
+      <ul class="plan-features">
+        <li>Full 360° Marketing</li>
+        <li>Unlimited Posts</li>
+        <li>8 Reels + 2 Brand Videos</li>
+        <li>2 Photo Shoots / Month</li>
+        <li>SEO (3 Keywords)</li>
+        <li>Weekly Reports + Strategy Call</li>
+      </ul>
+      <a href="pricing.html" class="btn-primary" style="display:block;text-align:center;font-size:14px;">See Full Plan</a>
     </div>
-  </div>
-  <div style="text-align:center;margin-top:24px;">
-    <a href="pricing.html" class="btn btn-outline">See Full Pricing & All Plans →</a>
   </div>
 </section>
 
 <!-- REVIEWS -->
-<section class="sec sec-alt">
-  <div class="sec-label">Client Reviews</div>
-  <h2 class="sec-title">What Our Clients Say</h2>
+<section class="section" style="background:var(--section-alt);padding:80px 5%;">
+  <div class="section-label">Client Reviews</div>
+  <h2 class="section-title">What Our Clients Say</h2>
   <div class="reviews-grid">
-    <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Digiyaan360 took our salon's Instagram from 200 followers to 4,500 in just 3 months. Bookings doubled. Best investment we made."</div><div class="review-author">Ritu Sharma</div><div class="review-biz">Ritu's L'Oréal Makeup Studio, Kanpur</div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"The hoarding at South X Mall and the LED signboard they made — customers still mention it. Our wedding inquiries went through the roof."</div><div class="review-author">Aksh Events Team</div><div class="review-biz">Aksh Grand Banquet Hall, Shyam Nagar</div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"SEO results visible in 6 weeks. We now rank #1 for our main keyword in Kanpur. The monthly reports are detailed and honest."</div><div class="review-author">Dr. Ankit Verma</div><div class="review-biz">Pakhi Eye Care, Kanpur</div></div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Digiyaan360 transformed our salon's Instagram. We went from 200 to 4,500 followers in 3 months and bookings doubled."</div>
+      <div class="review-author">Ritu Sharma</div>
+      <div class="review-biz">Ritu's L'Oréal Makeup Studio, Kanpur</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Their hoarding at South X Mall gave us massive visibility. The LED signboard they made for us still gets compliments every day."</div>
+      <div class="review-author">Aksh Events</div>
+      <div class="review-biz">Aksh Grand Banquet Hall, Shyam Nagar</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"SEO results were visible within 6 weeks. We now rank #1 for our main keyword in Kanpur. Best investment we made."</div>
+      <div class="review-author">Dr. Ankit Verma</div>
+      <div class="review-biz">Pakhi Eye Care, Kanpur</div>
+    </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA BAND -->
 <div class="cta-band">
-  <h2>READY TO GROW?</h2>
-  <p>Join 200+ businesses across Kanpur who trust Digiyaan360 with their marketing.</p>
-  <div class="btn-row">
-    <a href="pricing.html" class="btn btn-white">See All Plans</a>
-    <a href="https://wa.me/917084861080?text=Hi Digiyaan360! I'd like a free consultation." target="_blank" class="btn btn-green">💬 WhatsApp Us</a>
-  </div>
+  <h2>READY TO GROW YOUR BUSINESS?</h2>
+  <p>Join 200+ businesses across Kanpur who trust Digiyaan360 for their marketing.</p>
+  <a href="contact.html" class="btn-white">Book a Free Consultation</a>
 </div>
 
 <!-- FOOTER -->
-<footer class="footer">
+<footer class="site-footer">
   <div class="footer-top">
     <div>
-      <div class="footer-logo">DIGIYAAN360</div>
-      <p class="footer-desc">360° Marketing Agency — Digital, AI, Print & On-Ground. Kanpur's most trusted growth partner.</p>
-      <div class="footer-contact">
-        <a href="tel:+917084861080">📞 +91-7084861080</a>
-        <a href="tel:+918765341863">📞 +91-8765341863</a>
-        <a href="mailto:info.digiyaan@gmail.com">✉️ info.digiyaan@gmail.com</a>
-        <a href="https://www.instagram.com/digiyaan_official/" target="_blank">📸 @digiyaan_official</a>
-      </div>
+      <div class="footer-logo">DIGIYAAN<span>360</span></div>
+      <p class="footer-desc">360° Marketing Agency — Digital, Print & On-Ground. Kanpur's most trusted growth partner.</p>
+      <p style="font-size:13px;color:var(--muted-text);margin-top:8px;">📞 +91-7084861080</p>
     </div>
-    <div>
-      <div class="footer-col-title">Pages</div>
-      <div class="footer-col">
+    <div class="footer-nav">
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Pages</div>
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="pricing.html">Pricing</a>
         <a href="portfolio.html">Portfolio</a>
       </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Company</div>
-      <div class="footer-col">
+      <div class="footer-nav-col">
+        <div class="footer-nav-title">Company</div>
         <a href="case-studies.html">Case Studies</a>
         <a href="about.html">About Us</a>
         <a href="contact.html">Contact</a>
         <a href="https://wa.me/917084861080" target="_blank">WhatsApp Us</a>
       </div>
     </div>
-    <div>
-      <div class="footer-col-title">Services</div>
-      <div class="footer-col">
-        <a href="services.html#social">Social Media</a>
-        <a href="services.html#video">Video & Reels</a>
-        <a href="services.html#seo">SEO</a>
-        <a href="services.html#ai">AI & Automation</a>
-        <a href="services.html#web">Website Design</a>
-        <a href="services.html#outdoor">Outdoor Ads</a>
-      </div>
-    </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Digiyaan360. All rights reserved. | Kanpur, Uttar Pradesh</span>
+    <span>© 2025 Digiyaan360. All rights reserved.</span>
     <span>Optimize · Advertise · Amplify</span>
   </div>
 </footer>
 
-<a class="wa-fab" href="https://wa.me/917084861080" target="_blank" title="Chat on WhatsApp">💬</a>
-<div class="toast" id="toast"></div>
-
-<script src="app.js"></script>
+<script src="shared.js"></script>
 </body>
 </html>
